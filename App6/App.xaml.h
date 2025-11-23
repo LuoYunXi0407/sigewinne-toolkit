@@ -13,5 +13,6 @@ namespace winrt::App6::implementation
 
     private:
         winrt::Microsoft::UI::Xaml::Window window{ nullptr };
+
     };
 }

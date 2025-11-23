@@ -1,47 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <Window
     x:Class="App6.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:App6"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:App6"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Title="App6a">
+    Title="Toolbox"
+    mc:Ignorable="d">
 
     <Window.SystemBackdrop>
-        <MicaBackdrop/>
+        <MicaBackdrop />
     </Window.SystemBackdrop>
 
+    <NavigationView
+        AlwaysShowHeader="True"
+        Background="Transparent"
+        ExpandedModeThresholdWidth="500"
+        Header="Genshin Impact Game Toolbox"
+        IsBackButtonVisible="Auto"
+        IsBackEnabled="False"
+        IsSettingsVisible="True"
+        IsTabStop="False"
+        Loaded="viewloaded"
+        PaneDisplayMode="Auto"
+        SelectionFollowsFocus="Disabled">
 
-    <NavigationView x:Name="nvSample"
-    IsSettingsVisible="True"
-    IsBackButtonVisible="Auto"
-    IsBackEnabled="False"
-    SelectionChanged="NavigationView_SelectionChanged"
-    Header="Genshin Impact Game Toolbox"
-    AlwaysShowHeader="True"
-    Loaded="viewloaded" 
-    PaneDisplayMode="Auto"
-    ExpandedModeThresholdWidth="500"
-    SelectionFollowsFocus="Disabled"
-Background="Transparent"
-    IsTabStop="False">
-
-        <NavigationView.MenuItems >
-            <NavigationViewItem Content="Default" Tag="SamplePage1" x:Name="SamplePage1Item">
+        <NavigationView.MenuItems>
+            <NavigationViewItem
+                x:Name="SamplePage1Item"
+                Content="Default"
+                Tag="SamplePage1">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Play" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItemHeader Content="Actions"/>
-            <NavigationViewItem Content="Save Offsets" Tag="SamplePage2" x:Name="SamplePage2Item" SelectsOnInvoked="True">
+            <NavigationViewItemHeader Content="Actions" />
+            <NavigationViewItem
+                x:Name="SamplePage2Item"
+                Content="Save Offsets"
+                SelectsOnInvoked="True"
+                Tag="SamplePage2">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Save" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Search Offsets" Tag="SamplePage3" x:Name="SamplePage3Item">
+            <NavigationViewItem
+                x:Name="SamplePage3Item"
+                Content="Search Offsets"
+                Tag="SamplePage3">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Refresh" />
                 </NavigationViewItem.Icon>
@@ -49,191 +57,206 @@ Background="Transparent"
         </NavigationView.MenuItems>
 
         <NavigationView.PaneCustomContent>
-            <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
+            <HyperlinkButton
+                x:Name="PaneHyperlink"
+                Margin="12,0"
+                Content="More info"
+                Visibility="Collapsed" />
         </NavigationView.PaneCustomContent>
 
         <NavigationView.AutoSuggestBox>
-            <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" />
+            <AutoSuggestBox AutomationProperties.Name="Search" QueryIcon="Find" />
         </NavigationView.AutoSuggestBox>
 
         <NavigationView.PaneFooter>
-            <StackPanel x:Name="FooterStackPanel" Orientation="Vertical" Visibility="Collapsed">
-                <NavigationViewItem Icon="Download" AutomationProperties.Name="download" />
-                <NavigationViewItem Icon="Favorite" AutomationProperties.Name="favorite" />
+            <StackPanel
+                x:Name="FooterStackPanel"
+                Orientation="Vertical"
+                Visibility="Collapsed">
+                <NavigationViewItem AutomationProperties.Name="download" Icon="Download" />
+                <NavigationViewItem AutomationProperties.Name="favorite" Icon="Favorite" />
             </StackPanel>
         </NavigationView.PaneFooter>
 
-
-        <StackPanel Orientation="Vertical" Padding="12" Spacing="15">
-            <Button Style="{StaticResource AccentButtonStyle}" Margin="0,20,0,0" Content="Game Start" Click="Button_Click_Game"/>
-            <Button Style="{StaticResource SubtleButtonStyle}" Content="Kill Process" Click="Button_Click"/>
-            <TextBox Margin="20,20,0,0" x:Name="Path" Header="Genshin Impact Game Path:" PlaceholderText="eg: C:\\Games\\Genshin Impact\\YuanShen.exe" />
+        <StackPanel
+            Padding="12"
+            Orientation="Vertical"
+            Spacing="15">
+            <Button
+                Margin="0,20,0,0"
+                Click="Button_Click_Game"
+                Content="Game Start"
+                Style="{StaticResource AccentButtonStyle}" />
+            <Button
+                Click="Button_Click"
+                Content="Kill Process"
+                Style="{StaticResource SubtleButtonStyle}" />
+            <TextBox
+                x:Name="Path"
+                Margin="20,20,0,0"
+                Header="Genshin Impact Game Path:"
+                PlaceholderText="eg: C:\\Genshin Impact\\YuanShen.exe" />
             <Grid Padding="16">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <ToggleSwitch
-            Grid.Row="0"
-            Grid.Column="0"
-            Header="TargetFovHotSwitch"
-            IsOn="False"
-            Toggled="TargetFovHotSwitch"
-                    />
+                    x:Name="TargetFovHotSwitch_Toggle"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Header="TargetFovHotSwitch"
+                    IsOn="False"
+                    Toggled="TargetFovHotSwitch" />
 
                 <NumberBox
-            Grid.Row="0"
-            Grid.Column="1"
-            Padding="10,8,6,6"
-            Header="TargetFov"
-            IsEnabled="True"
-            LargeChange="10"
-            Margin="0,0,100,0"
-            Maximum="100"
-            Minimum="1"
-            SmallChange="1"
-            SpinButtonPlacementMode="Inline"
-            ValueChanged ="TargetFov"
-            Value="45"/>
+                    x:Name="TargetFov_NumberBox"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,100,0"
+                    Padding="10,8,6,6"
+                    Header="TargetFov"
+                    IsEnabled="True"
+                    LargeChange="10"
+                    Maximum="100"
+                    Minimum="1"
+                    SmallChange="1"
+                    SpinButtonPlacementMode="Inline"
+                    ValueChanged="TargetFov"
+                    Value="45" />
                 <ToggleSwitch
-            Grid.Row="0"
-            Grid.Column="2"
-            Header="DisableFog"
-
-            IsOn="False"
-            Toggled ="DisableFog"
-            />
+                    x:Name="DisableFog_Toggle"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Header="DisableFog"
+                    IsOn="False"
+                    Toggled="DisableFog" />
 
                 <ToggleSwitch
-            Header="TargetFpsToggleSwitch"
-            Grid.Row="1"
-            Grid.Column="0"
-            IsOn="False"
-            Toggled ="TargetFpsToggleSwitch"    
-            />
-
-
-
-
+                    x:Name="TargetFpsToggleSwitch_Toggle"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Header="TargetFpsToggleSwitch"
+                    IsOn="False"
+                    Toggled="TargetFpsToggleSwitch" />
 
                 <NumberBox
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="0,0,100,0"
-            Padding="10,8,6,6"
-            Header="TargetFps"
-            IsEnabled="True"
-            Maximum="120"
-            Minimum="1"
-            SpinButtonPlacementMode="Inline"
-            ValueChanged ="TargetFps"
-            Value="120"/>
+                    x:Name="TargetFps_NumberBox"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,100,0"
+                    Padding="10,8,6,6"
+                    Header="TargetFps"
+                    IsEnabled="True"
+                    Maximum="120"
+                    Minimum="1"
+                    SpinButtonPlacementMode="Inline"
+                    ValueChanged="TargetFps"
+                    Value="120" />
                 <ToggleSwitch
-            Header="FixLowFovSceneToggleSwitch"
-            Grid.Row="1"
-            Grid.Column="2"
-            IsOn="False"
-            Toggled ="FixLowFovSceneToggleSwitch"   
-           />
-   
-                <ToggleSwitch
-            Header="HideQuestBanner"
-            Grid.Row="2"
-            Grid.Column="0"
-            IsOn="False"
-            Toggled ="HideQuestBanner"   
-
-
-                />
+                    x:Name="FixLowFovSceneToggleSwitch_Toggle"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Header="FixLowFovSceneToggleSwitch"
+                    IsOn="False"
+                    Toggled="FixLowFovSceneToggleSwitch" />
 
                 <ToggleSwitch
-            Grid.Row="2"
-            Grid.Column="1"
-            Header="RemoveOpenTeamProgress"
-            IsOn="False"
-            Toggled ="RemoveOpenTeamProgress"   
-            />
-                <ToggleSwitch
-            Grid.Row="2"
-            Grid.Column="2"
-            Header="EventCameraMoveHotSwitch"
-            IsOn="False"
-            Toggled ="EventCameraMoveHotSwitch"   
-            />
+                    x:Name="HideQuestBanner_Toggle"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Header="HideQuestBanner"
+                    IsOn="False"
+                    Toggled="HideQuestBanner" />
 
                 <ToggleSwitch
-            Grid.Row="3"
-            Grid.Column="0"
-            Header="DisableShowDamageText"
-            IsOn="False"
-Toggled ="DisableShowDamageText"   
-            />
+                    x:Name="RemoveOpenTeamProgress_Toggle"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Header="RemoveOpenTeamProgress"
+                    IsOn="False"
+                    Toggled="RemoveOpenTeamProgress" />
                 <ToggleSwitch
-            Header="RedirectCombineEntryToggleSwitch"
-            Grid.Row="3"
-            Grid.Column="1"
-            IsOn="False"
-            Toggled ="RedirectCombineEntryToggleSwitch" 
-            >
-
-
-                </ToggleSwitch>
+                    x:Name="EventCameraMoveHotSwitch_Toggle"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Header="EventCameraMoveHotSwitch"
+                    IsOn="False"
+                    Toggled="EventCameraMoveHotSwitch" />
 
                 <ToggleSwitch
-            Grid.Row="3"
-            Grid.Column="2"
-            Header="UsingTouchScreen"
-            IsEnabled="True"
-            IsOn="False"
-            Toggled ="UsingTouchScreen"        
-                    />
+                    x:Name="DisableShowDamageText_Toggle"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Header="DisableShowDamageText"
+                    IsOn="False"
+                    Toggled="DisableShowDamageText" />
+                <ToggleSwitch
+                    x:Name="RedirectCombineEntryToggleSwitch_Toggle"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Header="RedirectCombineEntryToggleSwitch"
+                    IsOn="False"
+                    Toggled="RedirectCombineEntryToggleSwitch" />
 
                 <ToggleSwitch
-            Grid.Row="4"
-            Grid.Column="0"
-            Header="ResinListItemAllowOriginalResin"
-            Toggled ="ResinListItemAllowOriginalResin"      
-            IsOn="True"/>
-                <ToggleSwitch
-            Grid.Row="4"
-            Grid.Column="1"
-            Header="ResinListItemAllowPrimogem"
-                    Toggled ="ResinListItemAllowPrimogem"  
-            IsOn="True"/>
-                <ToggleSwitch
-            Grid.Row="4"
-            Grid.Column="2"
-            Header="ResinListItemAllowFragileResin"
-                    Toggled ="ResinListItemAllowFragileResin"
-            IsOn="True"/>
+                    x:Name="UsingTouchScreen_Toggle"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Header="UsingTouchScreen"
+                    IsEnabled="True"
+                    IsOn="False"
+                    Toggled="UsingTouchScreen" />
 
                 <ToggleSwitch
-            Grid.Row="5"
-            Grid.Column="0"
-            Header="ResinListItemAllowTransientResin"
-                    Toggled ="ResinListItemAllowTransientResin"
-            IsOn="True"/>
+                    x:Name="ResinListItemAllowOriginalResin_Toggle"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Header="ResinListItemAllowOriginalResin"
+                    IsOn="False"
+                    Toggled="ResinListItemAllowOriginalResin" />
                 <ToggleSwitch
-            Grid.Row="5"
-            Grid.Column="1"
-            Header="ResinListItemAllowCondensedResin"
-                        Toggled ="ResinListItemAllowCondensedResin"
-            IsOn="True"/>
+                    x:Name="ResinListItemAllowPrimogem_Toggle"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Header="ResinListItemAllowPrimogem"
+                    IsOn="False"
+                    Toggled="ResinListItemAllowPrimogem" />
+                <ToggleSwitch
+                    x:Name="ResinListItemAllowFragileResin_Toggle"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Header="ResinListItemAllowFragileResin"
+                    IsOn="False"
+                    Toggled="ResinListItemAllowFragileResin" />
+
+                <ToggleSwitch
+                    x:Name="ResinListItemAllowTransientResin_Toggle"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Header="ResinListItemAllowTransientResin"
+                    IsOn="False"
+                    Toggled="ResinListItemAllowTransientResin" />
+                <ToggleSwitch
+                    x:Name="ResinListItemAllowCondensedResin_Toggle"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Header="ResinListItemAllowCondensedResin"
+                    IsOn="False"
+                    Toggled="ResinListItemAllowCondensedResin" />
             </Grid>
         </StackPanel>
 
-
     </NavigationView>
-
 
 </Window>

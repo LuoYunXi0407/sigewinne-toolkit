@@ -39,5 +39,7 @@ namespace winrt::App6::implementation
     {
         window = make<MainWindow>();
         window.Activate();
+
+
     }
 }
