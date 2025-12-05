@@ -4,8 +4,15 @@
     <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xaml" />
-    <Page Include="IslandPage.xaml" />
+    <Page Include="IslandPage.xaml">
+      <Filter>View</Filter>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Filter>View</Filter>
+    </Page>
+    <Page Include="LaunchGamePage.xaml">
+      <Filter>View</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -13,12 +20,18 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="launchgame.cpp" />
+    <ClCompile Include="launchgame.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="island.h" />
-    <ClInclude Include="config.h" />
+    <ClInclude Include="island.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -46,6 +59,12 @@
   <ItemGroup>
     <Filter Include="Assets">
       <UniqueIdentifier>{93cdf262-18f7-4cd0-9385-42ae46c9b161}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{8d6ba8d3-7818-4942-8bac-4cc7e2b56b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service">
+      <UniqueIdentifier>{ebf41ea4-0dc7-48af-9f6c-0350ed9e06f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
