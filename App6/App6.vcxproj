@@ -39,10 +39,6 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -119,6 +115,10 @@
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="island.h" />
+    <ClInclude Include="LaunchGamePage.xaml.h">
+      <DependentUpon>LaunchGamePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
@@ -133,6 +133,9 @@
     <Page Include="IslandPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LaunchGamePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +144,10 @@
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="launchgame.cpp" />
+    <ClCompile Include="LaunchGamePage.xaml.cpp">
+      <DependentUpon>LaunchGamePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -155,6 +162,10 @@
   <ItemGroup>
     <Midl Include="IslandPage.idl">
       <DependentUpon>IslandPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="LaunchGamePage.idl">
+      <DependentUpon>LaunchGamePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="MainWindow.idl">

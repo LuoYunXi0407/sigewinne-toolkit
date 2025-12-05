@@ -10,6 +10,9 @@
     <Page Include="MainWindow.xaml">
       <Filter>View</Filter>
     </Page>
+    <Page Include="LaunchGamePage.xaml">
+      <Filter>View</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
