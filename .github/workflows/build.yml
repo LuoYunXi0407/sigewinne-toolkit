@@ -18,7 +18,7 @@ env:
   BUILD_CONFIGURATION: Release
 
 permissions:
-  contents: read
+  contents: read-write
 
 jobs:
   build:
@@ -55,7 +55,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v5.0.0
       with:
-        path: ${{ github.workspace }}\artifact_temp\*
+        path: ${{ github.workspace }}\artifact_temp\App6*
         
     - name: Prepare Upload Release
       working-directory: ${{env.GITHUB_WORKSPACE}}
@@ -67,8 +67,8 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-       tag_name: refs/heads/master
-       release_name: Release refs/heads/master
+       tag_name: v6.2b0
+       release_name: prerelease
        body: prerelease
        draft: false
        prerelease: true
