@@ -42,7 +42,17 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Platform=x64 /p:PlatformToolset=v143 /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
+    - name: Prepare Upload
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+            powershell -Command "Get-ChildItem './x64/Release/App6' -Recurse | Where-Object { -not $_.PSIsContainer -and $_.Extension -notin '.pdb','.exp','.lib','.xbf','.winmd' } | ForEach-Object { $t='.\\artifact_temp\\'+($_.FullName.Substring((Get-Item './x64/Release').FullName.Length+1)); $p=Split-Path $t; if(-not (Test-Path $p)){New-Item -ItemType Directory $p | Out-Null}; Copy-Item $_.FullName $t -Force }"
+            powershell -Command "Invoke-WebRequest -Uri 'https://www.nuget.org/api/v2/package/Snap.Hutao.UnlockerIsland/1.4.6' -OutFile './island.zip'"
+            powershell -Command "Expand-Archive -Path './island.zip' -DestinationPath './island'"
+            powershell -Command "Copy-Item -Path '.\island\runtimes\win-x64\native\Snap.Hutao.UnlockerIsland.dll' -Destination '.\artifact_temp\App6\nvhelper.dll' -Force"
+            powershell -Command "Rename-Item -Path '.\artifact_temp\App6\App6.exe' -NewName 'toolbox.exe'"
+            powershell -Command "Rename-Item -Path '.\artifact_temp\App6\App6.pri' -NewName 'toolbox.pri'"
+            
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v5.0.0
       with:
-        path: ${{ github.workspace }}\x64\Release\*
+        path: ${{ github.workspace }}\artifact_temp\*
