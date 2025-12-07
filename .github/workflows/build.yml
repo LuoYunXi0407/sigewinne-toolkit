@@ -42,7 +42,7 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Platform=x64 /p:PlatformToolset=v143 /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
-    - name: Prepare Upload
+    - name: Prepare Upload Artifact
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
             powershell -Command "Copy-Item './x64/Release/App6' './artifact_temp/App6' -Recurse -Force -Exclude '*.pdb','*.exp','*.lib','*.xbf','*.winmd'"
@@ -56,6 +56,10 @@ jobs:
       uses: actions/upload-artifact@v5.0.0
       with:
         path: ${{ github.workspace }}\artifact_temp\*
+        
+    - name: Prepare Upload Release
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run:  powershell -Command "Compress-Archive -Path './artifact_temp/App6/*' -DestinationPath './artifact_temp/toolbox.zip' -Force"
 
     - name: Create Release
       id: create_release
@@ -68,3 +72,11 @@ jobs:
        body: prerelease
        draft: false
        prerelease: true
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+       upload_url: ${{ steps.create_release.outputs.upload_url }}
+       asset_path: ./artifact_temp/toolbox.zip
+       asset_name: toolbox.zip
+       asset_content_type: application/zip
