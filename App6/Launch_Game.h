@@ -1,11 +1,10 @@
-#include "pch.h"
+#pragma once
 #include <Windows.h>
-#include <pathcch.h>
 #include <string>
 #include <filesystem>
 #include <wil/resource.h>
 #include "wil/result.h"
-#pragma comment(lib, "Pathcch.lib")
+
 
 
 static void Launch_Game_Impl(const std::filesystem::path& fs_path)
@@ -70,7 +69,7 @@ static void Launch_Game_Impl(const std::filesystem::path& fs_path)
 
 
 
-DWORD WINAPI LaunchGameProc(LPVOID lpParameter)
+DWORD WINAPI Launch_Game_Proc(LPVOID lpParameter)
 {
 	std::wstring* wstr = (std::wstring*)lpParameter;
 	std::filesystem::path fs_path(*wstr);

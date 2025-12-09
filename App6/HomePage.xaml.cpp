@@ -4,6 +4,7 @@
 #include "HomePage.g.cpp"
 #endif
 #include <winrt/Windows.UI.Xaml.Interop.h>
+#include "Launch_Game.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -20,8 +21,9 @@ namespace winrt::App6::implementation
 
     void HomePage::Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        auto str = winrt::to_string(Path().Text());
-        //launchGame((char*)str.c_str());
+
+		std::wstring path(Path().Text());
+		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Launch_Game_Proc, &path, 0, NULL);
 
     }
 }
