@@ -2,44 +2,78 @@
 #include <Windows.h>
 #include <pathcch.h>
 #include <string>
+#include <filesystem>
+#include <wil/resource.h>
+#include "wil/result.h"
 #pragma comment(lib, "Pathcch.lib")
 
-static void launchGameImpl(char* path)
+
+static void Launch_Game_Impl(const std::filesystem::path& fs_path)
 {
-    STARTUPINFOW si{};
-    PROCESS_INFORMATION pi{};
-    si.cb = sizeof(si);
+	// Launch the process in a suspended state
 
-    WCHAR workdir[MAX_PATH];
-    std::wstring wpath = std::wstring(path, path + strlen(path));;
+	STARTUPINFOW si{};
+	PROCESS_INFORMATION pi{};
+	si.cb = sizeof(si);
+	auto work_dir = fs_path.parent_path();
+	BOOL started = CreateProcessW(
+		fs_path.c_str(),
+		NULL,
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_SUSPENDED,
+		NULL,
+		work_dir.c_str(),
+		&si,
+		&pi
+	);
+	THROW_IF_WIN32_BOOL_FALSE(started);
 
-    wcsncpy_s(workdir, wpath.c_str(), MAX_PATH);
-    PathCchRemoveFileSpec(workdir, MAX_PATH);
-    BOOL started = CreateProcess(wpath.c_str(), NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, workdir, &si, &pi);
 
-    WCHAR dllPath[MAX_PATH];
-    GetModuleFileNameW(NULL, dllPath, MAX_PATH);
-    PathCchRemoveFileSpec(dllPath, MAX_PATH);
-    PathCchCombine(dllPath, MAX_PATH, dllPath, L"nvhelper.dll");
+	// Inject the DLL into the process
+	constexpr wchar_t dll_name[] = L"nvhelper.dll";
+	auto dll_path = work_dir / dll_name;
+	wil::unique_handle hOpenProcess(OpenProcess(PROCESS_ALL_ACCESS, 0, pi.dwProcessId));
+	HANDLE process = hOpenProcess.get();
+	THROW_LAST_ERROR_IF(!hOpenProcess);
 
-    HANDLE hOpenProcess = OpenProcess(PROCESS_ALL_ACCESS, 0, pi.dwProcessId);
-    LPVOID ptr = VirtualAllocEx(hOpenProcess, NULL, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-    BOOL iswrite = WriteProcessMemory(hOpenProcess, ptr, dllPath, wcslen(dllPath) * 2 + 2, NULL);
+	const LPVOID ptr = VirtualAllocEx(process, NULL, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+	THROW_IF_NULL_ALLOC(ptr);
 
-    HMODULE hm = GetModuleHandleW(L"kernel32.dll");
-    FARPROC hp = GetProcAddress(hm, "LoadLibraryW");
+	BOOL is_write = WriteProcessMemory(process, ptr, dll_path.c_str(), wcslen(dll_path.c_str()) * 2 + 2, NULL);
+	THROW_IF_WIN32_BOOL_FALSE(is_write);
 
-    HANDLE hcrt = CreateRemoteThread(hOpenProcess, NULL, NULL, (LPTHREAD_START_ROUTINE)hp, ptr, NULL, NULL);
-    WaitForSingleObject(hcrt, INFINITE);
-    BOOL free = VirtualFreeEx(hOpenProcess, ptr, 0, MEM_RELEASE);
-    CloseHandle(hcrt);
-    FreeLibrary(hm);
-    ResumeThread(pi.hThread);
+	HMODULE kernel32 = GetModuleHandleW(L"kernel32.dll");
+	THROW_LAST_ERROR_IF(!kernel32);
+
+	FARPROC loadLibraryW = GetProcAddress(kernel32, "LoadLibraryW");
+	THROW_LAST_ERROR_IF(!loadLibraryW);
+
+	wil::unique_handle(
+		CreateRemoteThread(
+				process, 
+				NULL, 
+				NULL, 
+				(LPTHREAD_START_ROUTINE)loadLibraryW, 
+				ptr, 
+				NULL, 
+				NULL
+		)
+	);
+
+	WaitForSingleObject(hOpenProcess.get(), INFINITE);
+	BOOL is_free = VirtualFreeEx(process, ptr, 0, MEM_RELEASE);
+	THROW_IF_WIN32_BOOL_FALSE(is_free);
+	ResumeThread(pi.hThread);
 }
 
-DWORD WINAPI launchGame(LPVOID lpParameter)
-{
-    launchGameImpl((char*)lpParameter);
-    return 0;
-}
 
+
+DWORD WINAPI LaunchGameProc(LPVOID lpParameter)
+{
+	std::wstring* wstr = (std::wstring*)lpParameter;
+	std::filesystem::path fs_path(*wstr);
+	Launch_Game_Impl(fs_path);
+	return 0;
+}

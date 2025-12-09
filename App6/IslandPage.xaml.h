@@ -4,7 +4,7 @@
 #include "island.h"
 #include "config.h"
 
-DWORD WINAPI launchGame(LPVOID lpParameter);
+DWORD WINAPI LaunchGameProc(LPVOID lpParameter);
 extern IslandEnvironment* penv;
 
 namespace winrt::App6::implementation
