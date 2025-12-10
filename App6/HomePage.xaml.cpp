@@ -5,11 +5,13 @@
 #include "HomePage.g.cpp"
 #endif
 #include <winrt/Windows.UI.Xaml.Interop.h>
-
+#include "Settings.h"
+#include <google/protobuf/util/json_util.h>
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
-
+using namespace Service::LaunchGame;
+using namespace Service::Settings;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -17,13 +19,14 @@ namespace winrt::App6::implementation
 {
     void HomePage::Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-	    exit(0);
+
+	    //exit(0);
     }
 
     void HomePage::Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        Service::LaunchGame::s_path = Path().Text().c_str();
-        Service::LaunchGame::Launch();
+        g_path = Path().Text().c_str();
+        Launch();
     }
 
     void HomePage::SelectorBar2_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::SelectorBar const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectorBarSelectionChangedEventArgs const& args)
@@ -41,7 +44,6 @@ namespace winrt::App6::implementation
             contentFrame().Navigate(xaml_typename<App6::IslandPage>());
             break;
         default:
-            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
             break;
         }
 

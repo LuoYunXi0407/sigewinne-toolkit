@@ -29,19 +29,25 @@
     <ClCompile Include="LaunchGame.cpp">
       <Filter>Service</Filter>
     </ClCompile>
+    <ClCompile Include="settings.pb.cc">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="island.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>Service</Filter>
-    </ClInclude>
     <ClInclude Include="LaunchGame.h">
       <Filter>Service</Filter>
     </ClInclude>
     <ClInclude Include="Settings.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.pb.h">
       <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>

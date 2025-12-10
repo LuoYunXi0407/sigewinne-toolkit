@@ -6,7 +6,7 @@
 
 #include "MainWindow.g.h"
 #include "island.h"
-#include "config.h"
+
 
 
 

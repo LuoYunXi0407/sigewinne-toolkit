@@ -6,10 +6,10 @@
 namespace Service::LaunchGame
 {
 
-inline std::wstring s_path;
+	inline std::wstring g_path;
 
-static void LaunchGameImpl(const std::filesystem::path& fs_path);
+	static void LaunchGameImpl(const std::filesystem::path& fs_path);
 
-void Launch();
+	void Launch();
 
 } 

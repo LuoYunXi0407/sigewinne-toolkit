@@ -149,8 +149,8 @@
     <ClInclude Include="MainWindow.xaml.h">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="config.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="settings.pb.h" />
     <ClInclude Include="SettingsCard.xaml.h">
       <DependentUpon>SettingsCard.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -182,6 +182,7 @@
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="LaunchGame.cpp" />
+    <ClCompile Include="settings.cpp" />
     <ClInclude Include="LaunchGame.h" />
     <ClCompile Include="LaunchGamePage.xaml.cpp">
       <DependentUpon>LaunchGamePage.xaml</DependentUpon>
@@ -197,6 +198,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="settings.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="SettingsCard.xaml.cpp">
       <DependentUpon>SettingsCard.xaml</DependentUpon>
       <SubType>Code</SubType>

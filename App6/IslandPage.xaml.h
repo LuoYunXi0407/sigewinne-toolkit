@@ -2,7 +2,7 @@
 
 #include "IslandPage.g.h"
 #include "island.h"
-#include "config.h"
+
 
 DWORD WINAPI LaunchGameProc(LPVOID lpParameter);
 extern IslandEnvironment* penv;

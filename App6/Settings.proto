@@ -1,46 +1,46 @@
-package Service;
+syntax = "proto3";
+package Service.Proto;
 
 message Home
 {
-    message LaunchGame
-    {
-        bool            LaunchUsingHoyolabAccount         =  1;
-        bool            LaunchIsWindowsHDREnabled         =  2;
-        bool            LaunchGamePathEntries             =  3;
-        bool            IsFullScreen                      =  4;
-        bool            IsExclusive                       =  5;
-        bool            IsBorderless                      =  6;
-        bool            IsScreenWidthEnabled              =  7;
-        int32           ScreenWidth                       =  8;
-        bool            IsScreenHeightEnabled             =  9;
-        int32           ScreenHeight                      = 10;
-    }
-    
-    message Island
-    {
-    
-    	bool            EnableSetFieldOfView              =  1;
-    	float           FieldOfView                       =  2;
-        bool            FixLowFovScene                    =  3;
-        bool            DisableFog                        =  4;
-        bool            EnableSetTargetFrameRate          =  5;
-        int32           TargetFrameRate                   =  6;
-        bool            RemoveOpenTeamProgress            =  7;
-        bool            HideQuestBanner                   =  8;
-        bool            DisableEventCameraMove            =  9;
-        bool            DisableShowDamageText             = 10;
-        bool            UsingTouchScreen                  = 11;
-        bool            RedirectCombineEntry              = 12;
-        map<int32,bool> items                             = 13;
-    
-    }
-
-	string LaunchGamePath   = 1;
+	string      GamePath    = 1;
     LaunchGame  LaunchGame  = 2;
     Island      Island      = 3;
+    int32       SelectedIndex = 4;
 }
 
+message LaunchGame
+{
+    bool            UsingHoyolabAccount               =  1;
+    bool            AreCommandLineArgumentsEnabled    =  2;
+    bool            IsWindowsHDREnabled               =  3;
+    bool            IsFullScreen                      =  4;
+    bool            IsExclusive                       =  5;
+    bool            IsBorderless                      =  6;
+    bool            IsScreenWidthEnabled              =  7;
+    int32           ScreenWidth                       =  8;
+    bool            IsScreenHeightEnabled             =  9;
+    int32           ScreenHeight                      = 10;
+}
 
+message Island
+{
+
+	bool            EnableSetFieldOfView              =  1;
+	float           FieldOfView                       =  2;
+    bool            FixLowFovScene                    =  3;
+    bool            DisableFog                        =  4;
+    bool            EnableSetTargetFrameRate          =  5;
+    int32           TargetFrameRate                   =  6;
+    bool            RemoveOpenTeamProgress            =  7;
+    bool            HideQuestBanner                   =  8;
+    bool            DisableEventCameraMove            =  9;
+    bool            DisableShowDamageText             = 10;
+    bool            UsingTouchScreen                  = 11;
+    bool            RedirectCombineEntry              = 12;
+    map<int32,bool> items                             = 13;
+
+}
 
 message Settings {
     Home        Home        = 1;

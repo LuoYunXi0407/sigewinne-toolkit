@@ -15,71 +15,12 @@ namespace winrt::App6::implementation
 
     void IslandPage::loadConfig()
     {
-        pConfig pconfig = new Config();
-        ZeroMemory(pconfig, sizeof(Config));
-        auto h = CreateFile(L"config", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (h == INVALID_HANDLE_VALUE) {
-            return;
-        }
-        LPVOID ptr = nullptr;
-        ReadFile(h, pconfig, sizeof(Config), NULL, NULL);
-        //Path().Text(winrt::to_hstring(pconfig->gamePath));
-        TargetFps_NumberBox().Value(pconfig->TargetFrameRate);
-        TargetFov_NumberBox().Value(pconfig->FieldOfView);
-        TargetFovHotSwitch_Toggle().IsOn(pconfig->EnableSetFieldOfView);
-        DisableFog_Toggle().IsOn(pconfig->DisableFog);
-        DisableShowDamageText_Toggle().IsOn(pconfig->DisableShowDamageText);
-        TargetFpsToggleSwitch_Toggle().IsOn(pconfig->EnableSetTargetFrameRate);
-        FixLowFovSceneToggleSwitch_Toggle().IsOn(pconfig->FixLowFovScene);
-        RemoveOpenTeamProgress_Toggle().IsOn(pconfig->RemoveOpenTeamProgress);
-        EventCameraMoveHotSwitch_Toggle().IsOn(pconfig->DisableEventCameraMove);
-        RedirectCombineEntryToggleSwitch_Toggle().IsOn(pconfig->RedirectCombineEntry);
-        HideQuestBanner_Toggle().IsOn(pconfig->HideQuestBanner);
-        UsingTouchScreen_Toggle().IsOn(pconfig->UsingTouchScreen);
-        ResinListItemAllowOriginalResin_Toggle().IsOn(pconfig->ResinListItemId000106Allowed);
-        ResinListItemAllowPrimogem_Toggle().IsOn(pconfig->ResinListItemId000201Allowed);
-        ResinListItemAllowFragileResin_Toggle().IsOn(pconfig->ResinListItemId107009Allowed);
-        ResinListItemAllowTransientResin_Toggle().IsOn(pconfig->ResinListItemId107012Allowed);
-        ResinListItemAllowCondensedResin_Toggle().IsOn(pconfig->ResinListItemId220007Allowed);
 
-        CloseHandle(h);
-        delete pconfig;
     }
 
     void IslandPage::saveConfig()
     {
 
-        pConfig pconfig = new Config();
-        ZeroMemory(pconfig, sizeof(Config));
-        auto h = CreateFile(L"config", GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (h == INVALID_HANDLE_VALUE) {
-            return;
-        }
-        LPVOID ptr = nullptr;
-
-        //auto str = winrt::to_string(Path().Text());
-        //strcpy_s(pconfig->gamePath, str.c_str());
-        pconfig->DisableEventCameraMove = penv->DisableEventCameraMove;;
-        pconfig->DisableFog = penv->DisableFog;
-        pconfig->DisableShowDamageText = penv->DisableShowDamageText;
-        pconfig->EnableSetFieldOfView = penv->EnableSetFieldOfView;
-        pconfig->EnableSetTargetFrameRate = penv->EnableSetTargetFrameRate;
-        pconfig->FieldOfView = penv->FieldOfView;
-        pconfig->FixLowFovScene = penv->FixLowFovScene;
-        pconfig->HideQuestBanner = penv->HideQuestBanner;
-        pconfig->RemoveOpenTeamProgress = penv->RemoveOpenTeamProgress;
-        pconfig->RedirectCombineEntry = penv->RedirectCombineEntry;
-        pconfig->UsingTouchScreen = penv->UsingTouchScreen;
-        pconfig->TargetFrameRate = penv->TargetFrameRate;
-        pconfig->ResinListItemId000106Allowed = penv->ResinListItemId000106Allowed;
-        pconfig->ResinListItemId000201Allowed = penv->ResinListItemId000201Allowed;
-        pconfig->ResinListItemId107009Allowed = penv->ResinListItemId107009Allowed;
-        pconfig->ResinListItemId107012Allowed = penv->ResinListItemId107012Allowed;
-        pconfig->ResinListItemId220007Allowed = penv->ResinListItemId220007Allowed;
-
-        WriteFile(h, pconfig, sizeof(Config), NULL, NULL);
-        CloseHandle(h);
-        delete pconfig;
     }
 
     void IslandPage::Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)

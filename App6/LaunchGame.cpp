@@ -8,11 +8,9 @@
 
 namespace Service::LaunchGame
 {
-
 	static void LaunchGameImpl(const std::filesystem::path& fs_path)
 	{
 		// Launch the process in a suspended state
-
 		STARTUPINFOW si{};
 		PROCESS_INFORMATION pi{};
 		si.cb = sizeof(si);
@@ -69,18 +67,16 @@ namespace Service::LaunchGame
 		BOOL is_free = VirtualFreeEx(process, ptr, 0, MEM_RELEASE);
 		THROW_IF_WIN32_BOOL_FALSE(is_free);
 		ResumeThread(pi.hThread);
-
 	}
 
 	void Launch()
 	{
 		wil::unique_handle hThread(CreateThread(NULL, 0, [](LPVOID) -> DWORD
-			{
-				std::filesystem::path fs_path(s_path);
-				LaunchGameImpl(fs_path);
-				return 0;
-			}, NULL, 0, NULL));
+		{
+			std::filesystem::path fs_path(g_path);
+			LaunchGameImpl(fs_path);
+			return 0;
+		}, NULL, 0, NULL));
 		THROW_LAST_ERROR_IF(!hThread);
-
 	}
 }
