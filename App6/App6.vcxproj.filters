@@ -26,6 +26,9 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="LaunchGame.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -35,7 +38,7 @@
     <ClInclude Include="config.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="Launch_Game.h">
+    <ClInclude Include="LaunchGame.h">
       <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>

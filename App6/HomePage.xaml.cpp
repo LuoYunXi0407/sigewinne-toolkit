@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Launch_Game.h"
+#include "LaunchGame.h"
 #include "HomePage.xaml.h"
 #if __has_include("HomePage.g.cpp")
 #include "HomePage.g.cpp"
@@ -22,30 +22,30 @@ namespace winrt::App6::implementation
 
     void HomePage::Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-
-		static std::wstring path(Path().Text());
-		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Launch_Game_Proc, &path, 0, NULL);
-
+        Service::LaunchGame::s_path = Path().Text().c_str();
+        Service::LaunchGame::Launch();
     }
-}
 
-void winrt::App6::implementation::HomePage::SelectorBar2_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::SelectorBar const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectorBarSelectionChangedEventArgs const& args)
-{
-    auto item = sender.SelectedItem();
-    uint32_t currentSelectedIndex;
-    sender.Items().IndexOf(item, currentSelectedIndex);
-
-    switch (currentSelectedIndex)
+    void HomePage::SelectorBar2_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::SelectorBar const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectorBarSelectionChangedEventArgs const& args)
     {
-    case 0:
-        contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
-        break;
-    case 1:
-        contentFrame().Navigate(xaml_typename<App6::IslandPage>());
-        break;
-    default:
-        contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
-        break;
+        auto item = sender.SelectedItem();
+        uint32_t currentSelectedIndex;
+        sender.Items().IndexOf(item, currentSelectedIndex);
+
+        switch (currentSelectedIndex)
+        {
+        case 0:
+            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
+            break;
+        case 1:
+            contentFrame().Navigate(xaml_typename<App6::IslandPage>());
+            break;
+        default:
+            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
+            break;
+        }
+
     }
-    
+
 }
+

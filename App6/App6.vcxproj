@@ -180,7 +180,8 @@
       <DependentUpon>IslandPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClInclude Include="Launch_Game.h" />
+    <ClCompile Include="LaunchGame.cpp" />
+    <ClInclude Include="LaunchGame.h" />
     <ClCompile Include="LaunchGamePage.xaml.cpp">
       <DependentUpon>LaunchGamePage.xaml</DependentUpon>
       <SubType>Code</SubType>
