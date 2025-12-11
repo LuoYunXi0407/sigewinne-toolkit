@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "MHYLogin.h"
+#include "HoYoLogin.h"
 #include <unordered_map>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
