@@ -25,8 +25,8 @@ namespace Service::Account
 		std::string_view m_ltoken;
 		std::string_view m_ltuid;
 		std::string_view m_mid;
-
-		static inline const wchar_t m_url[] = L"https://passport-api.mihoyo.com/account/ma-cn-verifier/app/createAuthTicketByGameBiz";
+		std::string m_ticket;
+		static constexpr wchar_t m_url[] = L"https://passport-api.mihoyo.com/account/ma-cn-verifier/app/createAuthTicketByGameBiz";
 	};
 
 

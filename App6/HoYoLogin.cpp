@@ -138,7 +138,7 @@ namespace Service::Account
 		auto response = co_await httpClient.PostAsync(uri, content);
 		hstring body = co_await response.Content().ReadAsStringAsync();
 		auto responseJson = JsonObject::Parse(body);
-		ticket = winrt::to_string(
+		m_ticket = winrt::to_string(
 			responseJson.GetNamedObject(L"data").GetNamedString(L"ticket")
 		);
 	}
