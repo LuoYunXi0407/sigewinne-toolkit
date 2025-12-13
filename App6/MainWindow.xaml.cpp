@@ -67,6 +67,15 @@ namespace winrt::App6::implementation
         //contentFrame().Navigate(xaml_typename<App6::HomePage>());
     }
 
+    HWND MainWindow::GetWindowHandle()
+    {
+        if (_hwnd == nullptr)
+        {
+            Window window = *this;
+            window.as<IWindowNative>()->get_WindowHandle(&_hwnd);
+        }
+        return _hwnd;
+    }
 }
 
 

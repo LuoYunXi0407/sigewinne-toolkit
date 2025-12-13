@@ -29,15 +29,10 @@ namespace winrt::App6::implementation
             
             initializeEnv();
 
-			HWND hwnd{};
-            auto windowNative = this->try_as<::IWindowNative>();
-            windowNative->get_WindowHandle(&hwnd);
-            auto windowId = winrt::Microsoft::UI::GetWindowIdFromWindow(hwnd);
-            auto appWindow = winrt::Microsoft::UI::Windowing::AppWindow::GetFromWindowId(windowId);
-            appWindow.Closing([&](auto&&, auto&&)
+            this->AppWindow().Closing([&](auto&&, auto&&)
                 {
 
-                    //saveConfig();
+                    MessageBoxA(0, "a", "a", 0);
 				});
 
 			this->ExtendsContentIntoTitleBar(true);
@@ -46,11 +41,16 @@ namespace winrt::App6::implementation
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
+        void initializeEnv();
+        void viewloaded(Windows::Foundation::IInspectable const& sender, RoutedEventArgs const& e);
+        void NavigationView_SelectionChanged(NavigationView const& sender, NavigationViewSelectionChangedEventArgs const& args);
 
-		void initializeEnv();
-        void viewloaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+    private:
+        HWND _hwnd{ nullptr };
+        HWND GetWindowHandle();
+
+
         
-        void NavigationView_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs const& args);
     };
 }
 
