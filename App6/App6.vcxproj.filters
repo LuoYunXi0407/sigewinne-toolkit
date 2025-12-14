@@ -56,6 +56,7 @@
     <ClInclude Include="HoYoLogin.h">
       <Filter>Service\Account</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -79,6 +80,8 @@
     <Image Include="Assets\LockScreenLogo.scale-200.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="icon1.ico" />
+    <Image Include="Assets\Logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -109,5 +112,8 @@
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natstepfilter" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="App6.rc" />
   </ItemGroup>
 </Project>
