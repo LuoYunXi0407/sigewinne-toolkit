@@ -5,11 +5,14 @@
 #include "HomePage.g.cpp"
 #endif
 #include <winrt/Windows.UI.Xaml.Interop.h>
+#include <winrt/Microsoft.UI.Xaml.Media.Animation.h>
 #include "Settings.h"
 #include <google/protobuf/util/json_util.h>
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Windows::UI::Xaml::Interop;
+using namespace winrt::Microsoft::UI::Xaml::Media::Animation;
 using namespace Service::LaunchGame;
 using namespace Service::Settings;
 // To learn more about WinUI, the WinUI project structure,
@@ -34,14 +37,17 @@ namespace winrt::App6::implementation
         auto item = sender.SelectedItem();
         uint32_t currentSelectedIndex;
         sender.Items().IndexOf(item, currentSelectedIndex);
-
+        SlideNavigationTransitionInfo slideInfo{};
+        
         switch (currentSelectedIndex)
         {
         case 0:
-            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>());
+            slideInfo.Effect(SlideNavigationTransitionEffect::FromRight);
+            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>(), nullptr, slideInfo);
             break;
         case 1:
-            contentFrame().Navigate(xaml_typename<App6::IslandPage>());
+            slideInfo.Effect(SlideNavigationTransitionEffect::FromLeft);
+            contentFrame().Navigate(xaml_typename<App6::IslandPage>(), nullptr, slideInfo);
             break;
         default:
             break;
