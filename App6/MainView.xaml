@@ -19,7 +19,7 @@
             Grid.Row="0"
             IsBackButtonVisible="False"
             IsPaneToggleButtonVisible="False"
-            Subtitle="Toolkit v6.2b2">
+            Subtitle="Toolkit v6.2b3">
             <TitleBar.IconSource>
                 <ImageIconSource ImageSource="/Assets/Logo.ico" />
             </TitleBar.IconSource>
