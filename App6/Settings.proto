@@ -31,7 +31,7 @@ message Island
     bool            FixLowFovScene                    =  3;
     bool            DisableFog                        =  4;
     bool            EnableSetTargetFrameRate          =  5;
-    int32           TargetFrameRate                   =  6;
+    uint32          TargetFrameRate                   =  6;
     bool            RemoveOpenTeamProgress            =  7;
     bool            HideQuestBanner                   =  8;
     bool            DisableEventCameraMove            =  9;

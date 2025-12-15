@@ -2,10 +2,11 @@
 
 #include "IslandPage.g.h"
 #include "island.h"
+#include "Settings.h"
 
 
 DWORD WINAPI LaunchGameProc(LPVOID lpParameter);
-extern IslandEnvironment* penv;
+
 
 namespace winrt::App6::implementation
 {
@@ -13,37 +14,72 @@ namespace winrt::App6::implementation
     {
 
     private:
-        IslandEnvironment* penv = nullptr;
+        void make_environment();
+        IslandEnvironment* penv = nullptr;;
+        Service::Proto::Island* pisland = nullptr;
     public:
         IslandPage()
 
         {
-			penv = ::penv;
+            make_environment();
+            pisland = Service::Settings::g_settings.mutable_home()->mutable_island();
             this->NavigationCacheMode(Microsoft::UI::Xaml::Navigation::NavigationCacheMode::Required);
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
-        void loadConfig();
-        void saveConfig();
-        void Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void TargetFovHotSwitch(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void DisableFog(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void TargetFpsToggleSwitch(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void TargetFps(winrt::Microsoft::UI::Xaml::Controls::NumberBox const& sender, winrt::Microsoft::UI::Xaml::Controls::NumberBoxValueChangedEventArgs const& args);
-        void TargetFov(winrt::Microsoft::UI::Xaml::Controls::NumberBox const& sender, winrt::Microsoft::UI::Xaml::Controls::NumberBoxValueChangedEventArgs const& args);
-        void FixLowFovSceneToggleSwitch(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void RemoveOpenTeamProgress(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void EventCameraMoveHotSwitch(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void DisableShowDamageText(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void RedirectCombineEntryToggleSwitch(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void UsingTouchScreen(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ResinListItemAllowOriginalResin(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ResinListItemAllowPrimogem(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ResinListItemAllowFragileResin(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ResinListItemAllowTransientResin(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ResinListItemAllowCondensedResin(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void HideQuestBanner(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+
+        float FieldOfView();
+        void FieldOfView(float value);
+
+        uint32_t TargetFrameRate();
+        void TargetFrameRate(uint32_t value);
+
+        bool EnableSetFieldOfView();
+        void EnableSetFieldOfView(bool value);
+
+        bool FixLowFovScene();
+        void FixLowFovScene(bool value);
+
+        bool DisableFog();
+        void DisableFog(bool value);
+
+        bool EnableSetTargetFrameRate();
+        void EnableSetTargetFrameRate(bool value);
+
+        bool RemoveOpenTeamProgress();
+        void RemoveOpenTeamProgress(bool value);
+
+        bool HideQuestBanner();
+        void HideQuestBanner(bool value);
+
+        bool DisableEventCameraMove();
+        void DisableEventCameraMove(bool value);
+
+        bool DisableShowDamageText();
+        void DisableShowDamageText(bool value);
+
+        bool UsingTouchScreen();
+        void UsingTouchScreen(bool value);
+
+        bool RedirectCombineEntry();
+        void RedirectCombineEntry(bool value);
+
+        bool ResinListItemAllowOriginalResin();
+        void ResinListItemAllowOriginalResin(bool value);
+
+        bool ResinListItemAllowPrimogem();
+        void ResinListItemAllowPrimogem(bool value);
+
+        bool ResinListItemAllowFragileResin();
+        void ResinListItemAllowFragileResin(bool value);
+
+        bool ResinListItemAllowTransientResin();
+        void ResinListItemAllowTransientResin(bool value);
+
+        bool ResinListItemAllowCondensedResin();
+        void ResinListItemAllowCondensedResin(bool value);
+
+
     };
 }
 

@@ -6,7 +6,9 @@ namespace Service::Settings
 {
 	inline Service::Proto::Settings g_settings;
 
-	void LoadSettings();
+	void LoadSettingsFromFile();
+
+	void WriteSettingsToFile();
 
 }
 

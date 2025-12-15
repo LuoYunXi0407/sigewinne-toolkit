@@ -17,14 +17,10 @@ namespace winrt::App6::implementation
 {
     struct MainWindow : MainWindowT<MainWindow>
     {   
-    private:
-        IslandEnvironment* penv;
     public:
 
         MainWindow()
         {
-            
-            initializeEnv();
 
             this->AppWindow().Closing([&](auto&&, auto&&)
                 {
