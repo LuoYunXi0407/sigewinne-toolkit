@@ -365,3 +365,4 @@ FodyWeavers.xsd
 *.pb.cc
 *.pb.h
 /vcpkg_installed/x64-windows-static-md
+/App6/config
