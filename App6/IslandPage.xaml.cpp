@@ -228,6 +228,20 @@ loc_1:		pisland = Service::Settings::g_settings.mutable_home()->mutable_island()
 			{
 				pisland->set_targetframerate(60);
 			}
+
+			penv->FieldOfView = pisland->fieldofview();
+			penv->TargetFrameRate = pisland->targetframerate();
+			penv->EnableSetFieldOfView = pisland->enablesetfieldofview();
+			penv->FixLowFovScene = pisland->fixlowfovscene();
+			penv->DisableFog = pisland->disablefog();
+			penv->EnableSetTargetFrameRate = pisland->enablesettargetframerate();
+			penv->RemoveOpenTeamProgress = pisland->removeopenteamprogress();
+			penv->HideQuestBanner = pisland->hidequestbanner();
+			penv->DisableEventCameraMove = pisland->disableeventcameramove();
+			penv->DisableShowDamageText = pisland->disableshowdamagetext();
+			penv->UsingTouchScreen = pisland->usingtouchscreen();
+			penv->RedirectCombineEntry = pisland->redirectcombineentry();
+
 		}
 	}
 
