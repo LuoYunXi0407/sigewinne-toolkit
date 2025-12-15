@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "App.xaml.h"
+
+#include <Settings.h>
+
 #include "MainWindow.xaml.h"
 #include "winrt/Microsoft.Windows.Globalization.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::Windows::Globalization;
-
+using namespace Service::Settings;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -42,6 +45,15 @@ namespace winrt::App6::implementation
     /// <param name="e">Details about the launch request and process.</param>
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
+	    try
+	    {
+            LoadSettingsFromFile();
+	    }
+	    catch (...)
+	    {
+	    	MessageBoxW(0, L"LoadSettingsFromFile Error, ignore if firstrun", L"Warn", MB_OK | MB_ICONWARNING);
+	    }
+        
         ApplicationLanguages::PrimaryLanguageOverride(L"en-us");
         window = make<MainWindow>();
         window.Activate();
@@ -57,6 +69,19 @@ namespace winrt::App6::implementation
         if (windowNative && SUCCEEDED(windowNative->get_WindowHandle(&hwnd)))
         {
             SwitchToThisWindow(hwnd, TRUE);
+        }
+    }
+
+    App::~App() noexcept
+    {
+        try
+        {
+            WriteSettingsToFile();
+        }
+        catch (...)
+        {
+            MessageBoxW(0, L"WriteSettingsToFile Error", L"Warn", MB_OK | MB_ICONWARNING);
+            abort();
         }
     }
 }

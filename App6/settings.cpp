@@ -29,7 +29,7 @@ namespace Service::Settings
 
 		BOOL isRead = ReadFile(file, ptr, size.QuadPart, NULL, NULL);
 		THROW_IF_WIN32_BOOL_FALSE(isRead);
-		THROW_HR_IF(E_FAIL, g_settings.ParseFromArray(ptr, size.QuadPart));
+		THROW_HR_IF(E_FAIL, !g_settings.ParseFromArray(ptr, size.QuadPart));
 
 	}
 
