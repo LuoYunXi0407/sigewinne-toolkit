@@ -57,7 +57,7 @@
                     Grid.Row="0"
                     Grid.Column="2"
                     Header="DisableFog"
-                    IsOn="{x:Bind RemoveOpenTeamProgress, Mode=TwoWay}" />
+                    IsOn="{x:Bind DisableFog, Mode=TwoWay}" />
 
                 <ToggleSwitch
                     Grid.Row="1"
