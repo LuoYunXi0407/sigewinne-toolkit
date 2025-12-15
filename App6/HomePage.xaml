@@ -33,7 +33,8 @@
                 x:Name="Path"
                 Margin="0,20,0,0"
                 Header="Genshin Impact Game Path:"
-                PlaceholderText="eg: C:\\Genshin Impact\\YuanShen.exe" />
+                PlaceholderText="eg: C:\\Genshin Impact\\YuanShen.exe"
+                Text="{x:Bind GamePath, Mode=TwoWay}" />
             <SelectorBar x:Name="SelectorBar2" SelectionChanged="SelectorBar2_SelectionChanged">
                 <SelectorBarItem
                     x:Name="SelectorBarItemPage1"

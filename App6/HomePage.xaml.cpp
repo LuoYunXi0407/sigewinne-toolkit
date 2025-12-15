@@ -20,7 +20,17 @@ using namespace Service::Settings;
 
 namespace winrt::App6::implementation
 {
-    void HomePage::Button_KillProcess_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+	void HomePage::GamePath(hstring value)
+	{
+        g_settings.mutable_home()->set_gamepath(to_string(value));
+	}
+
+	hstring HomePage::GamePath()
+	{
+        return to_hstring(g_settings.mutable_home()->gamepath());
+	}
+
+	void HomePage::Button_KillProcess_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         TerminateProcess(GetCurrentProcess(), 0);
     }
