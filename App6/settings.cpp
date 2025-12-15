@@ -3,14 +3,19 @@
 #include "Windows.h"
 #include <wil/resource.h>
 #include "wil/result.h"
+#include <filesystem>
 
 namespace Service::Settings
 {
 	void LoadSettingsFromFile()
 	{
+		wchar_t exe_path[MAX_PATH];
+		THROW_LAST_ERROR_IF(!GetModuleFileNameW(NULL, exe_path, MAX_PATH));
+		std::filesystem::path tmp(exe_path);
+		tmp.remove_filename() /= L"config";
 		wil::unique_handle hFile(
 			CreateFileW(
-				L"config",
+				tmp.c_str(),
 				GENERIC_READ | GENERIC_WRITE, 0, 
 				NULL,
 				OPEN_EXISTING, 
@@ -40,9 +45,13 @@ namespace Service::Settings
 		const auto ptr = parr.get();
 		g_settings.SerializeToArray(ptr, size);
 
+		wchar_t exe_path[MAX_PATH];
+		THROW_LAST_ERROR_IF(!GetModuleFileNameW(NULL, exe_path, MAX_PATH));
+		std::filesystem::path tmp(exe_path);
+		tmp.remove_filename() /= L"config";
 		wil::unique_handle hFile(
 		CreateFileW(
-				L"config",
+			tmp.c_str(),
 				GENERIC_READ | GENERIC_WRITE,
 				0, NULL,
 				CREATE_ALWAYS,
