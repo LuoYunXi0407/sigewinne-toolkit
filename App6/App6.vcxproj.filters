@@ -110,15 +110,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Settings.proto">
-      <Filter>Service</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="App6.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natstepfilter" />
+    <CustomBuild Include="Settings.proto">
+      <Filter>Service</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
