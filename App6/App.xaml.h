@@ -1,6 +1,8 @@
 #pragma once
 
 #include "App.xaml.g.h"
+#include "SettingsCard.h"
+#include "SettingsCard.h"
 
 namespace winrt::App6::implementation
 {

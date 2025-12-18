@@ -13,9 +13,6 @@
     <Page Include="LaunchGamePage.xaml">
       <Filter>View</Filter>
     </Page>
-    <Page Include="SettingsCard.xaml">
-      <Filter>View</Filter>
-    </Page>
     <Page Include="HomePage.xaml">
       <Filter>View</Filter>
     </Page>
@@ -25,6 +22,7 @@
     <Page Include="MainView.xaml">
       <Filter>View</Filter>
     </Page>
+    <Page Include="Themes\Generic.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -43,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="HoYoLogin.cpp">
       <Filter>Service\Account</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsCard.cpp">
+      <Filter>Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +241,9 @@
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{481531b1-48d5-4c74-9050-97eab8449e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{cf3eecf3-5d69-43ac-a170-7ac98bbe943e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

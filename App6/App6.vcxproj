@@ -161,8 +161,8 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="settings.pb.h" />
-    <ClInclude Include="SettingsCard.xaml.h">
-      <DependentUpon>SettingsCard.xaml</DependentUpon>
+    <ClInclude Include="SettingsCard.h">
+      <DependentUpon>SettingsCard.cpp</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="SettingsPage.xaml.h">
@@ -185,12 +185,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml" />
-    <Page Include="SettingsCard.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HomePage.xaml.cpp">
@@ -208,6 +206,9 @@
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="settings.cpp" />
+    <ClCompile Include="SettingsCard.cpp">
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="SettingsPage.xaml.cpp">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -230,10 +231,6 @@
     <ClCompile Include="settings.pb.cc">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="SettingsCard.xaml.cpp">
-      <DependentUpon>SettingsCard.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +255,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
     <Midl Include="SettingsCard.idl">
-      <DependentUpon>SettingsCard.xaml</DependentUpon>
+      <DependentUpon>SettingsCard.cpp</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="SettingsPage.idl">

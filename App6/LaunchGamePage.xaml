@@ -11,29 +11,7 @@
         <ScrollViewer>
 
 
-            <StackPanel Spacing="3">
-                <local:SettingsCard
-                    x:Name="settingsCard"
-                    Description="Take advantage of monitors that support HDR for brighter, more vivid, and more detailed pictures"
-                    Header="Windows HDR" />
-                <local:SettingsCard
-                    x:Name="settingsCard1"
-                    Description="Modify its default behavior at game startup"
-                    Header="Launch Parameters" />
-                <local:SettingsCard
-                    x:Name="settingsCard2"
-                    Description="Incompatible with embedded browsers; operations like switching window may cause the game to crash"
-                    Header="-window-mode exclusive" />
-                <local:SettingsCard
-                    x:Name="settingsCard3"
-                    Description="Overwrite default fullscreen status"
-                    Header="-screen-fullscreen" />
-                <local:SettingsCard
-                    x:Name="settingsCard4"
-                    Description="Create window as popup, without frame"
-                    Header="-popupwindow" />
-
-            </StackPanel>
+            <StackPanel Spacing="3" />
 
         </ScrollViewer>
     </Border>
