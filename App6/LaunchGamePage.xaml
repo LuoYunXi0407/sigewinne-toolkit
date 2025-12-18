@@ -12,20 +12,91 @@
         <ScrollViewer>
 
 
-            <StackPanel Margin="0,0,10,0" Spacing="3">
+            <StackPanel Margin="30,0,30,0" Spacing="3">
+
+                <controls:SettingsCard x:Uid="ViewPageLaunchGameWindowsHDR">
+                    <ToggleSwitch MinWidth="10" IsOn="True" />
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7F7;" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
+
+                <controls:SettingsCard x:Uid="ViewPageLaunchGameArguments">
+                    <ToggleSwitch MinWidth="10" IsOn="True" />
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE943;" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
 
                 <controls:SettingsCard
-                    
-
-                    ContentAlignment="Right"
-                    Description="You can use a FontIcon, SymbolIcon or BitmapIcon to set the cards HeaderIcon."
-                    Header="Icon options">
-
-
+                    x:Uid="ViewPageLaunchGameAppearanceExclusive"
+                    MinHeight="58"
+                    Padding="16,8,16,8"
+                    Header="-window-mode exclusive">
+                    <ToggleSwitch MinWidth="10" IsOn="True" />
                     <controls:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE700;" />
+                        <FontIcon Glyph="&#xE943;" Opacity="0" />
                     </controls:SettingsCard.HeaderIcon>
-                    <ToggleSwitch MinWidth="10"  />
+                </controls:SettingsCard>
+
+                <controls:SettingsCard
+                    x:Uid="ViewPageLaunchGameAppearanceFullscreen"
+                    MinHeight="58"
+                    Padding="16,8,16,8"
+                    Header="-screen-fullscreen">
+                    <ToggleSwitch MinWidth="10" IsOn="True" />
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE943;" Opacity="0" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
+
+                <controls:SettingsCard
+                    x:Uid="ViewPageLaunchGameAppearanceBorderless"
+                    MinHeight="58"
+                    Padding="16,8,16,8"
+                    Header="-popupwindow">
+                    <ToggleSwitch MinWidth="10" IsOn="True" />
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE943;" Opacity="0" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
+
+                <controls:SettingsCard
+                    x:Uid="ViewPageLaunchGameAppearanceScreenWidth"
+                    MinHeight="58"
+                    Padding="16,8,16,8"
+                    Header="-screen-width">
+                    <StackPanel Orientation="Horizontal" Spacing="160">
+                        <NumberBox
+                            MinWidth="160"
+                            Padding="12,6,0,0"
+                            VerticalAlignment="Center"
+                            IsEnabled="True"
+                            Value="2560" />
+                        <ToggleSwitch MinWidth="10" IsOn="True" />
+                    </StackPanel>
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE943;" Opacity="0" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
+
+                <controls:SettingsCard
+                    x:Uid="ViewPageLaunchGameAppearanceScreenHeight"
+                    MinHeight="58"
+                    Padding="16,8,16,8"
+                    Header="-screen-height">
+                    <StackPanel Orientation="Horizontal" Spacing="160">
+                        <NumberBox
+                            MinWidth="160"
+                            Padding="12,6,0,0"
+                            VerticalAlignment="Center"
+                            IsEnabled="True"
+                            Value="1440" />
+                        <ToggleSwitch MinWidth="10" IsOn="True" />
+                    </StackPanel>
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE943;" Opacity="0" />
+                    </controls:SettingsCard.HeaderIcon>
                 </controls:SettingsCard>
 
             </StackPanel>

@@ -177,25 +177,31 @@
   <data name="ViewPageLaunchGameWindowsHDR.Header" xml:space="preserve">
     <value>Windows HDR</value>
   </data>
+  <data name="ViewPageLaunchGameWindowsHDR.Description" xml:space="preserve">
+    <value>Take advantage of monitors that support HDR for brighter, more vivid, and more detailed pictures</value>
+  </data>
   <data name="ViewPageLaunchGameArguments.Header" xml:space="preserve">
     <value>Launch Parameters</value>
   </data>
-  <data name="ViewPageLaunchGameAppearanceExclusiveDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameArguments.Description" xml:space="preserve">
+    <value>Modify its default behavior at game startup</value>
+  </data>
+  <data name="ViewPageLaunchGameAppearanceExclusive.Description" xml:space="preserve">
     <value>Incompatible with embedded browsers; operations like switching window may cause the game to crash</value>
   </data>
-  <data name="ViewPageLaunchGameAppearanceFullscreenDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameAppearanceFullscreen.Description" xml:space="preserve">
     <value>Overwrite default fullscreen status</value>
   </data>
-  <data name="ViewPageLaunchGameAppearanceBorderlessDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameAppearanceBorderless.Description" xml:space="preserve">
     <value>Create window as popup, without frame</value>
   </data>
-  <data name="ViewPageLaunchGameAppearanceScreenWidthDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameAppearanceScreenWidth.Description" xml:space="preserve">
     <value>Overwrite game window width setting</value>
   </data>
-  <data name="ViewPageLaunchGameAppearanceScreenHeightDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameAppearanceScreenHeight.Description" xml:space="preserve">
     <value>Overwrite game window height setting</value>
   </data>
-  <data name="ViewPageLaunchGameUseHoyolabAccountDescription" xml:space="preserve">
+  <data name="ViewPageLaunchGameUseHoyolabAccount.Description" xml:space="preserve">
     <value>Sign in with the currently selected MiYouShe / HoYoLAB user. Start parameters need to be enabled</value>
   </data>
   <data name="ViewPageHomeLaunch.Content" xml:space="preserve">

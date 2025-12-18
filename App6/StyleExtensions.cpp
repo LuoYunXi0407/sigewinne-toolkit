@@ -15,7 +15,7 @@ namespace winrt::App6::implementation
 {
 
     DependencyProperty StyleExtensions::s_ResourcesProperty =
-        DependencyProperty::Register(
+        DependencyProperty::RegisterAttached(
             L"Resources",
             winrt::xaml_typename<ResourceDictionary>(),
             winrt::xaml_typename<App6::StyleExtensions>(),
