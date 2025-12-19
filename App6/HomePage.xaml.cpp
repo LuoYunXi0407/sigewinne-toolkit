@@ -47,16 +47,18 @@ namespace winrt::App6::implementation
         uint32_t currentSelectedIndex;
         sender.Items().IndexOf(item, currentSelectedIndex);
         SlideNavigationTransitionInfo slideInfo{};
-        
+
         switch (currentSelectedIndex)
         {
         case 0:
-            slideInfo.Effect(SlideNavigationTransitionEffect::FromRight);
-            contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>(), nullptr, slideInfo);
+			currentSelectedIndex == SelectedIndex ? slideInfo.Effect(SlideNavigationTransitionEffect::FromBottom) : slideInfo.Effect(SlideNavigationTransitionEffect::FromRight);
+            SelectedIndex = currentSelectedIndex;
+        	contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>(), nullptr, slideInfo);
             break;
         case 1:
-            slideInfo.Effect(SlideNavigationTransitionEffect::FromLeft);
-            contentFrame().Navigate(xaml_typename<App6::IslandPage>(), nullptr, slideInfo);
+        	slideInfo.Effect(SlideNavigationTransitionEffect::FromLeft);
+            SelectedIndex = currentSelectedIndex;
+        	contentFrame().Navigate(xaml_typename<App6::IslandPage>(), nullptr, slideInfo);
             break;
         default:
             break;

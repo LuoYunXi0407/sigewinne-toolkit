@@ -16,14 +16,11 @@ namespace winrt::App6::implementation
 {
 	void MainView::NavView_ItemInvoked(const NavigationView& sender, const NavigationViewItemInvokedEventArgs& args)
 	{
-		if (auto item = args.InvokedItemContainer().as<NavigationViewItem>())
+		auto item = args.InvokedItemContainer().as<NavigationViewItem>();
+		if (auto headerText = item.Content().try_as<winrt::hstring>())
 		{
-			if (auto headerText = item.Content().try_as<winrt::hstring>())
-			{
-				HeaderText().Text(to_hstring(*headerText));
-			}
+			HeaderText().Text(to_hstring(*headerText));
 		}
-
 		if (args.IsSettingsInvoked())
 		{
 			contentFrame().Navigate(xaml_typename<SettingsPage>());
