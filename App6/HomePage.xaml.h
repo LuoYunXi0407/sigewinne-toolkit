@@ -22,7 +22,7 @@ namespace winrt::App6::implementation
         void Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void SelectorBar2_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::SelectorBar const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectorBarSelectionChangedEventArgs const& args);
 	private:
-        uint32_t SelectedIndex{0};
+        uint32_t m_selected_index{0};
     };
 }
 

@@ -51,13 +51,13 @@ namespace winrt::App6::implementation
         switch (currentSelectedIndex)
         {
         case 0:
-			currentSelectedIndex == SelectedIndex ? slideInfo.Effect(SlideNavigationTransitionEffect::FromBottom) : slideInfo.Effect(SlideNavigationTransitionEffect::FromRight);
-            SelectedIndex = currentSelectedIndex;
+			currentSelectedIndex == m_selected_index ? slideInfo.Effect(SlideNavigationTransitionEffect::FromBottom) : slideInfo.Effect(SlideNavigationTransitionEffect::FromRight);
+            m_selected_index = currentSelectedIndex;
         	contentFrame().Navigate(xaml_typename<App6::LaunchGamePage>(), nullptr, slideInfo);
             break;
         case 1:
         	slideInfo.Effect(SlideNavigationTransitionEffect::FromLeft);
-            SelectedIndex = currentSelectedIndex;
+            m_selected_index = currentSelectedIndex;
         	contentFrame().Navigate(xaml_typename<App6::IslandPage>(), nullptr, slideInfo);
             break;
         default:
