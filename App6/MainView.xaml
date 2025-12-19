@@ -47,7 +47,8 @@
             IsBackEnabled="False"
             IsSettingsVisible="True"
             IsTabStop="False"
-            ItemInvoked="NavView_ItemInvoked"
+
+            SelectionChanged="NavView_SelectionChanged"
             OpenPaneLength="200"
             PaneDisplayMode="Auto"
             SelectionFollowsFocus="Disabled">

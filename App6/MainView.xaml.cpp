@@ -14,20 +14,21 @@ using namespace Microsoft::UI::Xaml::Controls;
 
 namespace winrt::App6::implementation
 {
-	void MainView::NavView_ItemInvoked(const NavigationView& sender, const NavigationViewItemInvokedEventArgs& args)
+
+	void winrt::App6::implementation::MainView::NavView_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs const& args)
 	{
-		auto item = args.InvokedItemContainer().as<NavigationViewItem>();
+		auto item = args.SelectedItemContainer().as<NavigationViewItem>();
 		if (auto headerText = item.Content().try_as<winrt::hstring>())
 		{
 			HeaderText().Text(to_hstring(*headerText));
 		}
-		if (args.IsSettingsInvoked())
+		if (args.IsSettingsSelected())
 		{
 			contentFrame().Navigate(xaml_typename<SettingsPage>());
 			return;
 		}
 		contentFrame().Navigate(xaml_typename<HomePage>());
-		
 	}
 
 }
+

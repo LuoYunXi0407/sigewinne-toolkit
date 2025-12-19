@@ -53,7 +53,7 @@ namespace winrt::App6::implementation
 	        if (currentSelectedIndex == m_selected_index)
 	        {
 				//not user select from Selector bar, default animation
-                slideInfo.Effect(SlideNavigationTransitionEffect::FromBottom);
+                //slideInfo.Effect(SlideNavigationTransitionEffect::FromBottom);
 	        }
 	        else
 	        {

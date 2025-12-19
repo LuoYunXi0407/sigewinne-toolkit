@@ -16,18 +16,14 @@ namespace winrt::App6::implementation
             DispatcherQueue().TryEnqueue(
                 [this]()
                 {
-                    HeaderText().Text(L"Home");
-                    contentFrame().Navigate(
-                        winrt::xaml_typename<winrt::App6::HomePage>()
-                    );
+					NavView().SelectedItem(NavView().MenuItems().GetAt(0));
+
                 });
 	        // Xaml objects should not call InitializeComponent during construction.
 	        // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
 
-
-        void NavView_ItemInvoked(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args);
-        
+        void NavView_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs const& args);
     };
 }
 
