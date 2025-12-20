@@ -19,7 +19,7 @@
                         IsOn="{x:Bind StealthMode, Mode=TwoWay}"
                         Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
                     <controls:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE7F7;" />
+                        <FontIcon Glyph="&#xED1A;" />
                     </controls:SettingsCard.HeaderIcon>
                 </controls:SettingsCard>
             </StackPanel>

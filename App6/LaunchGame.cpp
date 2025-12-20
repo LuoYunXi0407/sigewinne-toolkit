@@ -14,7 +14,7 @@ namespace Service::LaunchGame
 	
 	static void LaunchGameImpl()
 	{
-		
+		SetIfHDROn();
 		GetLaunchGameParms();
 		// Launch the process in a suspended state
 		STARTUPINFOW si{};
@@ -126,6 +126,21 @@ namespace Service::LaunchGame
 
 			}
 		}
+
+	}
+
+	void SetIfHDROn()
+	{
+		if (plaunchgame->iswindowshdrenabled())
+		{
+			HKEY hKey = NULL;
+			uint32_t value = 1;
+			constexpr WCHAR subKey[] = L"Software\\miHoYo\\原神";
+			THROW_IF_WIN32_ERROR(RegCreateKeyExW(HKEY_CURRENT_USER, subKey, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL));
+			THROW_IF_WIN32_ERROR(RegSetValueExW(hKey, L"WINDOWS_HDR_ON_h3132281285", NULL, REG_DWORD, (BYTE*)&value, sizeof(value)));
+			THROW_IF_WIN32_ERROR(RegCloseKey(hKey));
+		}
+
 
 	}
 

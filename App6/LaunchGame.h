@@ -12,6 +12,8 @@ namespace Service::LaunchGame
 
 	static void GetLaunchGameParms();
 
+	static void SetIfHDROn();
+
 	void Launch();
 
 
