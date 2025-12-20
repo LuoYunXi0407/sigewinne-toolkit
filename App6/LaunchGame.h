@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <filesystem>
 
@@ -10,6 +10,9 @@ namespace Service::LaunchGame
 
 	static void LaunchGameImpl(const std::filesystem::path& fs_path);
 
+	static void GetLaunchGameParms();
+
 	void Launch();
+
 
 } 

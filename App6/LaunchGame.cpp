@@ -5,19 +5,27 @@
 #include "LaunchGame.h"
 #include <wil/resource.h>
 #include "wil/result.h"
+#include "Settings.h"
+
+using namespace Service::Settings;
 
 namespace Service::LaunchGame
 {
-	static void LaunchGameImpl(const std::filesystem::path& fs_path)
+
+	static void LaunchGameImpl()
 	{
+		
+		GetLaunchGameParms();
+
 		// Launch the process in a suspended state
 		STARTUPINFOW si{};
 		PROCESS_INFORMATION pi{};
 		si.cb = sizeof(si);
+		std::filesystem::path fs_path(g_path);
 		auto work_dir = fs_path.parent_path();
 		BOOL started = CreateProcessW(
-			fs_path.c_str(),
 			NULL,
+			const_cast<LPWSTR>(g_path.c_str()),
 			NULL,
 			NULL,
 			FALSE,
@@ -70,12 +78,63 @@ namespace Service::LaunchGame
 		ResumeThread(pi.hThread);
 	}
 
+	static void GetLaunchGameParms()
+	{
+
+		wchar_t width[10];
+		wchar_t height[10];
+		auto params_arr = std::vector<std::pair<const wchar_t*, const wchar_t*>>();
+
+		if (plaunchgame->arecommandlineargumentsenabled())
+		{
+			if (plaunchgame->isexclusive())
+			{
+				auto ExclusiveParm = std::pair{ L"-window-mode", L"exclusive" };
+				params_arr.emplace_back(ExclusiveParm);
+			}
+			if (plaunchgame->isfullscreen())
+			{
+				auto FullScreenParm = std::pair{ L"-screen-fullscreen", L"" };
+				params_arr.emplace_back(FullScreenParm);
+			}
+			if (plaunchgame->isborderless())
+			{
+				auto BorderlessParm = std::pair{ L"-popupwindow", L"" };
+				params_arr.emplace_back(BorderlessParm);
+			}
+			if (plaunchgame->isscreenwidthenabled())
+			{
+				_itow_s(plaunchgame->screenwidth(), width, 10);
+				auto ScreenWidthParm = std::pair{ L"-screen-width", width };
+				params_arr.emplace_back(ScreenWidthParm);
+			}
+			if (plaunchgame->isscreenheightenabled())
+			{
+				_itow_s(plaunchgame->screenheight(), height, 10);
+				auto ScreenHeightParm = std::pair{ L"-screen-height", height };
+				params_arr.emplace_back(ScreenHeightParm);
+			}
+
+			for (const auto& arg : params_arr)
+			{
+				g_path += L" ";
+				g_path += arg.first;
+				if (*arg.second != 0)
+				{
+					g_path += L" ";
+					g_path += arg.second;
+				}
+
+			}
+		}
+
+	}
+
 	void Launch()
 	{
 		wil::unique_handle hThread(CreateThread(NULL, 0, [](LPVOID) -> DWORD
 		{
-			std::filesystem::path fs_path(g_path);
-			LaunchGameImpl(fs_path);
+			LaunchGameImpl();
 			return 0;
 		}, NULL, 0, NULL));
 		THROW_LAST_ERROR_IF(!hThread);
