@@ -86,7 +86,9 @@
                             Padding="12,6,0,0"
                             VerticalAlignment="Center"
                             IsEnabled="True"
-                            Value="2560" />
+                            Maximum="10000"
+                            Minimum="0"
+                            Value="{x:Bind LaunchGameAppearanceScreenWidthValue, Mode=TwoWay}" />
                         <ToggleSwitch
                             MinWidth="10"
                             IsOn="{x:Bind LaunchGameAppearanceScreenWidth, Mode=TwoWay}"
@@ -108,7 +110,9 @@
                             Padding="12,6,0,0"
                             VerticalAlignment="Center"
                             IsEnabled="True"
-                            Value="1440" />
+                            Maximum="10000"
+                            Minimum="0"
+                            Value="{x:Bind LaunchGameAppearanceScreenHeightValue, Mode=TwoWay}" />
                         <ToggleSwitch
                             MinWidth="10"
                             IsOn="{x:Bind LaunchGameAppearanceScreenHeight, Mode=TwoWay}"

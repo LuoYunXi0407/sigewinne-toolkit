@@ -14,20 +14,32 @@ using namespace Microsoft::UI::Xaml::Controls;
 
 namespace winrt::App6::implementation
 {
-	void MainView::NavView_ItemInvoked(const NavigationView& sender, const NavigationViewItemInvokedEventArgs& args)
+	MainView::MainView()
 	{
-		auto item = args.InvokedItemContainer().as<NavigationViewItem>();
+		DispatcherQueue().TryEnqueue(
+			[this]()
+			{
+				NavView().SelectedItem(NavView().MenuItems().GetAt(0));
+
+			});
+		// Xaml objects should not call InitializeComponent during construction.
+		// See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
+	}
+
+	void winrt::App6::implementation::MainView::NavView_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs const& args)
+	{
+		auto item = args.SelectedItemContainer().as<NavigationViewItem>();
 		if (auto headerText = item.Content().try_as<winrt::hstring>())
 		{
 			HeaderText().Text(to_hstring(*headerText));
 		}
-		if (args.IsSettingsInvoked())
+		if (args.IsSettingsSelected())
 		{
 			contentFrame().Navigate(xaml_typename<SettingsPage>());
 			return;
 		}
 		contentFrame().Navigate(xaml_typename<HomePage>());
-		
 	}
 
 }
+

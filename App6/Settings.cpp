@@ -91,6 +91,8 @@ namespace Service::Settings
 
 loc_1:		plaunchgame = g_settings.mutable_home()->mutable_launchgame();
 			pisland = g_settings.mutable_home()->mutable_island();
+
+			// island default
 			if (!static_cast<int>(pisland->fieldofview()))
 			{
 				pisland->set_fieldofview(45);
@@ -98,6 +100,17 @@ loc_1:		plaunchgame = g_settings.mutable_home()->mutable_launchgame();
 			if (!pisland->targetframerate())
 			{
 				pisland->set_targetframerate(60);
+			}
+
+			// launchgame default
+			if (!plaunchgame->screenwidth())
+			{
+				plaunchgame->set_screenwidth(2560);
+			}
+
+			if (!plaunchgame->screenheight())
+			{
+				plaunchgame->set_screenheight(1440);
 			}
 			
 			penv->FieldOfView = pisland->fieldofview();

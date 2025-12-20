@@ -47,7 +47,8 @@
             IsBackEnabled="False"
             IsSettingsVisible="True"
             IsTabStop="False"
-            ItemInvoked="NavView_ItemInvoked"
+
+            SelectionChanged="NavView_SelectionChanged"
             OpenPaneLength="200"
             PaneDisplayMode="Auto"
             SelectionFollowsFocus="Disabled">
@@ -63,7 +64,7 @@
                         <SymbolIcon Symbol="Play" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItemHeader Content="Actions" />
+                <!--<NavigationViewItemHeader Content="Actions" />
                 <NavigationViewItem
                     x:Name="SamplePage2Item"
                     Content="Save Offsets"
@@ -80,10 +81,10 @@
                     <NavigationViewItem.Icon>
                         <SymbolIcon Symbol="Refresh" />
                     </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                </NavigationViewItem>-->
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem>
+                <!--<NavigationViewItem>
                     <Button MaxHeight="40" Margin="4,0">
                         <Button.Content>
                             <Grid>
@@ -124,7 +125,9 @@
                                         Margin="0,0"
                                         Padding="0,2"
                                         BorderThickness="0,0,1,0">
-                                        <!--  米游社 登录  -->
+                -->
+                <!--  米游社 登录  -->
+                <!--
                                         <AppBarButton
                                             Width="100"
                                             MaxWidth="100"
@@ -156,7 +159,9 @@
                                                 </Flyout>
                                             </AppBarButton.Flyout>
                                         </AppBarButton>
-                                        <!--  HoYoLAB 登录  -->
+                -->
+                <!--  HoYoLAB 登录  -->
+                <!--
                                         <AppBarButton
                                             Width="100"
                                             MaxWidth="100"
@@ -251,7 +256,7 @@
                         </Button.Flyout>
                         <Button.Style />
                     </Button>
-                </NavigationViewItem>
+                </NavigationViewItem>-->
                 <NavigationViewItemSeparator />
             </NavigationView.FooterMenuItems>
 
