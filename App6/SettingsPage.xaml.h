@@ -7,6 +7,8 @@ namespace winrt::App6::implementation
     struct SettingsPage : SettingsPageT<SettingsPage>
     {
         SettingsPage();
+        bool StealthMode();
+        void StealthMode(bool value);
     };
 }
 

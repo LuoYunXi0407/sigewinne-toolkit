@@ -16,7 +16,7 @@
                 <controls:SettingsCard x:Uid="ViewPageSettingsStealthMode">
                     <ToggleSwitch
                         MinWidth="10"
-                        IsOn="True"
+                        IsOn="{x:Bind StealthMode, Mode=TwoWay}"
                         Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
                     <controls:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE7F7;" />

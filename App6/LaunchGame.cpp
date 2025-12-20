@@ -133,7 +133,14 @@ namespace Service::LaunchGame
 	{
 		wil::unique_handle hThread(CreateThread(NULL, 0, [](LPVOID) -> DWORD
 		{
-			LaunchGameImpl();
+			try
+			{
+				LaunchGameImpl();
+			}
+			catch (...)
+			{
+				MessageBoxW(0, L"Launch GAME ERROR", L"Error", MB_OK | MB_ICONERROR);
+			}
 			return 0;
 		}, NULL, 0, NULL));
 		THROW_LAST_ERROR_IF(!hThread);

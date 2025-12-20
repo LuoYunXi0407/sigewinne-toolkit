@@ -91,7 +91,8 @@ namespace Service::Settings
 
 loc_1:		plaunchgame = g_settings.mutable_home()->mutable_launchgame();
 			pisland = g_settings.mutable_home()->mutable_island();
-
+			pappsettings = g_settings.mutable_appsettings();
+			
 			// island default
 			if (!static_cast<int>(pisland->fieldofview()))
 			{

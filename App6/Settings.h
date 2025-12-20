@@ -13,5 +13,5 @@ namespace Service::Settings
 	inline IslandEnvironment* penv = nullptr;
 	inline Service::Proto::Island* pisland = nullptr;
 	inline Service::Proto::LaunchGame* plaunchgame = nullptr;
-
+	inline Service::Proto::AppSettings* pappsettings = nullptr;
 }

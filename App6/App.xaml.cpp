@@ -1,8 +1,8 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "App.xaml.h"
 
 #include <Settings.h>
-
+#include <LaunchGame.h>
 #include "MainWindow.xaml.h"
 #include "winrt/Microsoft.Windows.Globalization.h"
 
@@ -51,9 +51,16 @@ namespace winrt::App6::implementation
 	    }
 	    catch (...)
 	    {
-	    	MessageBoxW(0, L"LoadSettingsFromFile Error, ignore if firstrun", L"Warn", MB_OK | MB_ICONWARNING);
+	    	MessageBoxW(0, L"LoadSettingsFromFile Error, ignore if FIRSTRUN", L"Warn", MB_OK | MB_ICONWARNING);
 	    }
         init_environment();
+	    if (pappsettings->stealthmode())
+	    {
+            std::string_view tmp = g_settings.mutable_home()->gamepath();
+            Service::LaunchGame::g_path = std::wstring(tmp.begin(),tmp.end());
+			Service::LaunchGame::Launch();
+
+	    }
         ApplicationLanguages::PrimaryLanguageOverride(L"en-us");
         window = make<MainWindow>();
         window.Activate();
