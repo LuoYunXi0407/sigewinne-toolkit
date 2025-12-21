@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Window
     x:Class="App6.MainWindow"
@@ -8,6 +8,7 @@
     xmlns:local="using:App6"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="ToolKit"
+    Closed="Window_Closed"
     mc:Ignorable="d">
 
     <Window.SystemBackdrop>

@@ -14,7 +14,7 @@ namespace winrt::App6::implementation
 {
 	MainWindow::MainWindow()
 	{
-
+		Exp1();
 		this->ExtendsContentIntoTitleBar(true);
 		this->AppWindow().TitleBar().PreferredHeightOption(TitleBarHeightOption::Tall);
 		this->AppWindow().TitleBar().PreferredTheme(TitleBarTheme::UseDefaultAppMode);
@@ -40,4 +40,38 @@ namespace winrt::App6::implementation
         }
         return _hwnd;
     }
+	void MainWindow::Exp1()
+	{
+		typedef __int64(__fastcall* put_PersistedStateId)(__int64 a1, __int64 a2);
+		typedef __int64(__fastcall* put_PlacementRestorationBehavior)(__int64 a1, __int64 a2);
+		void* result{};
+		guid gIAppWindowExperimental("04DB96C7-DEB6-5BE4-BFDC-1BC0361C8A12"); // IAppWindowExperimental
+		this->AppWindow().try_as<IUnknown>()->QueryInterface(gIAppWindowExperimental, &result);
+
+		auto vt = *(int64_t*)result;
+		auto a = (put_PlacementRestorationBehavior*)result;
+		const auto k = guid{ L"{1ed4408f-9732-4543-aa46-8758439652e6}" }; // App guid
+
+
+		auto func = reinterpret_cast<put_PlacementRestorationBehavior*>((char*)vt + 0x48);
+		(*func)((__int64)result, 0);
+		winrt::Windows::Foundation::IReference<winrt::guid> kk(k);
+		auto func2 = reinterpret_cast<put_PersistedStateId*>((char*)vt + 0x38);
+		(*func2)((__int64)result, (__int64)(*(__int64*)&kk));
+	}
+	void MainWindow::Exp2()
+	{
+		void* result{};
+		guid gIAppWindowExperimental("04DB96C7-DEB6-5BE4-BFDC-1BC0361C8A12");
+		this->AppWindow().try_as<IUnknown>()->QueryInterface(gIAppWindowExperimental, &result);
+		typedef __int64(__fastcall* SaveCurrentPlacement)(__int64 a1);
+		auto vt = *(int64_t*)result;
+		auto func3 = reinterpret_cast<SaveCurrentPlacement*>((char*)vt + 0x58);
+		(*func3)((__int64)result);
+	}
+}
+
+void winrt::App6::implementation::MainWindow::Window_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::WindowEventArgs const& args)
+{
+	Exp2();
 }

@@ -26,8 +26,11 @@ namespace winrt::App6::implementation
     private:
         HWND _hwnd{ nullptr };
         HWND GetWindowHandle();
+		void Exp1();
+        void Exp2();
 
-
+    public:
+        void Window_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::WindowEventArgs const& args);
     };
 }
 
