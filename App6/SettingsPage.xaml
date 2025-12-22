@@ -22,6 +22,16 @@
                         <FontIcon Glyph="&#xED1A;" />
                     </controls:SettingsCard.HeaderIcon>
                 </controls:SettingsCard>
+
+                <controls:SettingsCard x:Uid="ViewPageSettingsEnableRestrictedTokens">
+                    <ToggleSwitch
+                        MinWidth="10"
+                        IsOn="False"
+                        Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF0EF;" />
+                    </controls:SettingsCard.HeaderIcon>
+                </controls:SettingsCard>
             </StackPanel>
 
         </ScrollViewer>

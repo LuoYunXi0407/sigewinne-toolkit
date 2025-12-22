@@ -222,4 +222,10 @@
   <data name="ViewPageSettingsStealthMode.Header" xml:space="preserve">
     <value>Stealth Mode</value>
   </data>
+  <data name="ViewPageSettingsEnableRestrictedTokens.Header" xml:space="preserve">
+    <value>Restricted Tokens</value>
+  </data>
+  <data name="ViewPageSettingsEnableRestrictedTokens.Description" xml:space="preserve">
+    <value>Start the Game with Standard User Accesss Token</value>
+  </data>
 </root>
