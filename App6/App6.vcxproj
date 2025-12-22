@@ -209,6 +209,7 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Security.cpp" />
     <ClCompile Include="settings.cpp" />
     <ClCompile Include="SettingsCard.cpp">
       <SubType>Code</SubType>

@@ -49,6 +49,9 @@
     <ClCompile Include="SettingsCard.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Security.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
