@@ -36,6 +36,10 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
+    - name: vcpkg
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: vcpkg install --triplet "x64-windows-static-md" --x-manifest-root=${{env.SOLUTION_FILE_PATH}} --x-install-root==${{env.SOLUTION_FILE_PATH}}\vcpkg_installed\x64-windows-static-md\
+    
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
