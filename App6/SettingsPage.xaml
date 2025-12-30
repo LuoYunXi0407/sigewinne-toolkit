@@ -42,7 +42,7 @@
                             PlaceholderText="Pick a color"
                             SelectionChanged="LangCombo_SelectionChanged">
                             <x:String>Default</x:String>
-                            <x:String>Chinese</x:String>
+                            <x:String>zh-cn</x:String>
 
                         </ComboBox>
                         <ToggleSwitch
