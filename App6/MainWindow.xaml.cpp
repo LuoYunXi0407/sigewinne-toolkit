@@ -20,7 +20,7 @@ namespace winrt::App6::implementation
 	{
 		this->ExtendsContentIntoTitleBar(true); // this should be first
 		this->GetWindowHandle();
-		
+		sub_180001230();
 		//this->Exp1();
 		this->AppWindow().TitleBar().PreferredHeightOption(TitleBarHeightOption::Tall);
 		this->AppWindow().TitleBar().PreferredTheme(TitleBarTheme::UseDefaultAppMode);
@@ -31,7 +31,23 @@ namespace winrt::App6::implementation
 		this->AppWindow().Presenter().try_as<OverlappedPresenter>().PreferredMinimumWidth(static_cast<int32_t>(1000 * scale));
 		this->AppWindow().Presenter().try_as<OverlappedPresenter>().PreferredMinimumHeight(static_cast<int32_t>(600 * scale));
 		this->AddNotifyIcon();
-		SetWindowSubclass(_hwnd, &NotifyIconProc, 1, 0);
+
+		SetWindowSubclass(_hwnd, 
+			[](HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)->LRESULT
+			{
+				if (uMsg == reinterpret_cast<MainWindow*>(dwRefData)->dword_1800317B8)
+				{
+					if (LOWORD(lParam) == WM_RBUTTONUP)
+					{
+						//
+					}
+
+					
+				}
+
+				return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+			} ,
+			1, reinterpret_cast<DWORD_PTR>(this));
 		// Xaml objects should not call InitializeComponent during construction.
 		// See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
 
@@ -53,21 +69,34 @@ namespace winrt::App6::implementation
         return _hwnd;
     }
 
+	UINT MainWindow::sub_180001230()
+	{
+		std::once_flag icon_flag;
+		std::call_once(icon_flag, [this]()
+		{
+			this->dword_1800317B8 = RegisterWindowMessageW(L"SigewinneToolkitNotifyIconCallback");
+		});
+
+		return dword_1800317B8;
+	}
+
     void MainWindow::AddNotifyIcon()
     {
 
 		//https://stackoverflow.com/questions/73628384/winui-3-c-winrt-loading-string-resources
 		//ResourceManager rm{};
 		//auto str = rm.MainResourceMap().GetValue(L"Resources/String1").ValueAsString();
-
+		
 		ResourceLoader loader;
 		hstring appname = loader.GetString(L"NotifyIconName");
-
+		guid gNotifyIcon("21a2acbc-3a44-43c8-860a-f8e7151b2623");
 		NOTIFYICONDATAW nid = {};
 		nid.cbSize = sizeof(NOTIFYICONDATAW);
 		nid.hWnd = _hwnd;
-		nid.uID = 10000;
-		nid.uFlags = NIF_ICON | NIF_TIP;
+		nid.uID = 1;
+		nid.guidItem = gNotifyIcon;
+		nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP | NIF_GUID;
+		nid.uCallbackMessage = dword_1800317B8;
 		nid.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 		wcscpy_s(nid.szTip, appname.c_str());
 		Shell_NotifyIconW(NIM_ADD, &nid);
@@ -101,32 +130,6 @@ namespace winrt::App6::implementation
 		auto func3 = reinterpret_cast<SaveCurrentPlacement*>((char*)vt + 0x58);
 		(*func3)((__int64)result);
 		reinterpret_cast<IUnknown*>(result)->Release();
-	}
-
-	LRESULT CALLBACK NotifyIconProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
-	{
-		switch (uMsg)
-		{
-		case WM_MOUSEMOVE:
-			break;
-
-		case WM_SYSCOMMAND:
-			if ((wParam & 0xfff0) == SC_MINIMIZE)
-			{
-				// The window is being minimized
-				// Handle the SW_MINIMIZE event here
-			}
-			break;
-
-		case WM_LBUTTONDOWN:
-			break;
-
-		case WM_NCDESTROY:
-			RemoveWindowSubclass(hWnd, &NotifyIconProc, uIdSubclass);
-			break;
-		}
-
-		return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 	}
 
 }
