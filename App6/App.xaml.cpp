@@ -91,7 +91,7 @@ namespace winrt::App6::implementation
         init_environment();
 	    if (pappsettings->stealthmode())
 	    {
-            std::string_view tmp = g_settings.mutable_home()->gamepath();
+            std::string_view tmp = pappsettings->gamepath();
             Service::LaunchGame::g_path = std::wstring(tmp.begin(),tmp.end());
 			Service::LaunchGame::Launch();
 

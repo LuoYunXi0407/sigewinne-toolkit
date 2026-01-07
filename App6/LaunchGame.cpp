@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include <Windows.h>
 #include <string>
 #include <filesystem>
@@ -14,6 +14,10 @@ namespace Service::LaunchGame
 	
 	static void LaunchGameImpl()
 	{
+		g_path = std::wstring(
+			pappsettings->gamepath().begin(),
+			pappsettings->gamepath().end()
+		);
 		SetIfHDROn();
 		GetLaunchGameParms();
 		// Launch the process in a suspended state

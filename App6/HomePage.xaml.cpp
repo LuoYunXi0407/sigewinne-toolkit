@@ -34,7 +34,6 @@ namespace winrt::App6::implementation
 
     void HomePage::Button_Click_Game(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        g_path;
         Launch();
     }
 

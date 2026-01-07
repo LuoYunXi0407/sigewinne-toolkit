@@ -61,12 +61,12 @@ namespace winrt::App6::implementation
 
 	void SettingsPage::GamePath(hstring value)
 	{
-		g_settings.mutable_home()->set_gamepath(to_string(value));
+		pappsettings->set_gamepath(to_string(value));
 	}
 
 	hstring SettingsPage::GamePath()
 	{
-		return to_hstring(g_settings.mutable_home()->gamepath());
+		return to_hstring(pappsettings->gamepath());
 	}
 }
 
