@@ -4,9 +4,9 @@ package Service.Proto;
 message Home
 {
 	//string      GamePath    = 1;
-    LaunchGame  LaunchGame  = 2;
-    Island      Island      = 3;
-    int32       SelectedIndex = 4;
+    LaunchGame  LaunchGame     = 2;
+    Island      Island         = 3;
+    int32       SelectedIndex  = 4;
 }
 
 message LaunchGame

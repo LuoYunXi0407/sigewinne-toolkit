@@ -1,14 +1,16 @@
 #include "pch.h"
 #include "SettingsPage.xaml.h"
-
+#include <winrt/Microsoft.Windows.Storage.Pickers.h>
 #include "Settings.h"
 #if __has_include("SettingsPage.g.cpp")
 #include "SettingsPage.g.cpp"
 #endif
-
+#include <winrt/Microsoft.UI.Interop.h>
+#include "MainWindow.xaml.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
+using namespace Microsoft::Windows::Storage::Pickers;
 using namespace Service::Settings;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -16,61 +18,49 @@ using namespace Service::Settings;
 
 namespace winrt::App6::implementation
 {
-	SettingsPage::SettingsPage()
-	{
-		DispatcherQueue().TryEnqueue(
-			[this]()
-			{
-				LangCombo().SelectedIndex(pappsettings->lang());
+    SettingsPage::SettingsPage()
+    {
 
-			});
-		
-		// Xaml objects should not call InitializeComponent during construction.
-		// See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-	}
+        DispatcherQueue().TryEnqueue(
+            [this]()
+            {
+                LangCombo().SelectedIndex(pappsettings->lang());
+            });
 
-	bool SettingsPage::StealthMode()
-	{
-		return pappsettings->stealthmode();
-	}
+        // Xaml objects should not call InitializeComponent during construction.
+        // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
+    }
 
-	void SettingsPage::StealthMode(bool value)
-	{
-		pappsettings->set_stealthmode(value);
-	}
+    void SettingsPage::LangCombo_SelectionChanged(const Windows::Foundation::IInspectable& sender,
+                                                  const Controls::SelectionChangedEventArgs& e)
+    {
+        pappsettings->set_lang(LangCombo().SelectedIndex());
+    }
 
-	bool SettingsPage::RestrictedTokens()
-	{
-		return pappsettings->restrictedtokens();
-	}
+    void SettingsPage::SelectGamePath_Click(const Windows::Foundation::IInspectable& sender, const RoutedEventArgs& e)
+    {
+        selectGamePathAsync();
+    }
 
-	void SettingsPage::RestrictedTokens(bool value)
-	{
-		pappsettings->set_restrictedtokens(value);
-	}
+    winrt::App6::SettingsViewModel SettingsPage::ViewModel()
+    {
+		return m_viewModel;
+    }
 
-	bool SettingsPage::LangOverride()
-	{
-		return pappsettings->langoverride();
-	}
+    winrt::fire_and_forget SettingsPage::selectGamePathAsync()
+    {
+        
+        FileOpenPicker picker = FileOpenPicker(MainWindow::m_windowId);
+        picker.SuggestedStartLocation(PickerLocationId::ComputerFolder);
+        picker.FileTypeFilter().Append(L".exe");
+        auto result{ co_await picker.PickSingleFileAsync() };
 
-	void SettingsPage::LangOverride(bool value)
-	{
-		pappsettings->set_langoverride(value);
-	}
+        if (result)
+        {
+            m_viewModel.GamePath(result.Path());
+        }
+    }
 
-	void SettingsPage::GamePath(hstring value)
-	{
-		pappsettings->set_gamepath(to_string(value));
-	}
 
-	hstring SettingsPage::GamePath()
-	{
-		return to_hstring(pappsettings->gamepath());
-	}
 }
 
-void winrt::App6::implementation::SettingsPage::LangCombo_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e)
-{
-	pappsettings->set_lang(LangCombo().SelectedIndex());
-}

@@ -1,10 +1,8 @@
 #pragma once
 
 #include <microsoft.ui.xaml.window.h>
-#include <wil/result_macros.h>
-#include <winrt/Microsoft.UI.Windowing.h>
 #include "MainWindow.g.h"
-#include "island.h"
+
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
@@ -22,6 +20,7 @@ namespace winrt::App6::implementation
         MainWindow();
         void initializeEnv();
         void Window_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::WindowEventArgs const& args);
+        inline static winrt::Microsoft::UI::WindowId m_windowId;
 
     private:
         HWND _hwnd{ nullptr };

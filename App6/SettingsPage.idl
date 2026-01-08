@@ -1,13 +1,12 @@
+import "SettingsViewModel.idl";
 namespace App6
 {
     [default_interface]
     runtimeclass SettingsPage : Microsoft.UI.Xaml.Controls.Page
     {
+        
         SettingsPage();
-        Boolean StealthMode;
-        Boolean RestrictedTokens;
-        Boolean LangOverride;
-        String GamePath;
+        SettingsViewModel ViewModel{ get; };
     }
 
 }

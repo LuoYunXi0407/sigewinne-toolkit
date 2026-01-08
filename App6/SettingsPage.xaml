@@ -17,7 +17,7 @@
                 <essential:SettingsCard x:Uid="ViewPageSettingsStealthMode">
                     <ToggleSwitch
                         MinWidth="10"
-                        IsOn="{x:Bind StealthMode, Mode=TwoWay}"
+                        IsOn="{x:Bind ViewModel.StealthMode, Mode=TwoWay}"
                         Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
                     <essential:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xED1A;" />
@@ -27,7 +27,7 @@
                 <essential:SettingsCard x:Uid="ViewPageSettingsRestrictedTokens">
                     <ToggleSwitch
                         MinWidth="10"
-                        IsOn="{x:Bind RestrictedTokens, Mode=TwoWay}"
+                        IsOn="{x:Bind ViewModel.RestrictedTokens, Mode=TwoWay}"
                         Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
                     <essential:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF0EF;" />
@@ -49,7 +49,7 @@
                         <ToggleSwitch
                             x:Name="LangOverrideToggle"
                             MinWidth="10"
-                            IsOn="{x:Bind LangOverride, Mode=TwoWay}"
+                            IsOn="{x:Bind ViewModel.LangOverride, Mode=TwoWay}"
                             Style="{ThemeResource RightAlignedCompactToggleSwitchStyle}" />
                     </StackPanel>
 
@@ -66,17 +66,22 @@
 
                     <essential:SettingsExpander.Items>
 
-                        <essential:SettingsCard Header="Select Game Path" IsClickEnabled="True">
+                        <essential:SettingsCard
+                            Click="SelectGamePath_Click"
+                            Header="Select Game Path"
+                            IsClickEnabled="True">
                             <Button x:Uid="ViewPageSettingsGamePathAutoDetect" Style="{StaticResource AccentButtonStyle}" />
                         </essential:SettingsCard>
+
                         <essential:SettingsCard ContentAlignment="Left">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Uid="ViewPageSettingsGamePathTextBlock" VerticalAlignment="Center" />
                                 <TextBox
+                                    x:Name="GamePathText"
                                     x:Uid="ViewPageSettingsGamePathTextBox"
                                     MinWidth="600"
                                     Margin="20,0,0,0"
-                                    Text="{x:Bind GamePath, Mode=TwoWay}" />
+                                    Text="{x:Bind ViewModel.GamePath, Mode=TwoWay}" />
                             </StackPanel>
 
                         </essential:SettingsCard>

@@ -102,6 +102,9 @@ namespace winrt::App6::implementation
 		this->AppWindow().TitleBar().PreferredTheme(TitleBarTheme::UseDefaultAppMode);
 		this->AppWindow().SetIcon(L"Assets\\Logo.ico");
 
+		// WindowId
+		m_windowId = this->AppWindow().Id();
+
 		// Window
 
 		UINT dpi = GetDpiForWindow(GetWindowHandle());

@@ -172,6 +172,7 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SettingsViewModel.h" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -215,6 +216,7 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SettingsViewModel.cpp" />
     <ClInclude Include="LaunchGame.h" />
     <ClCompile Include="LaunchGamePage.xaml.cpp">
       <DependentUpon>LaunchGamePage.xaml</DependentUpon>
@@ -256,6 +258,7 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
+    <Midl Include="SettingsViewModel.idl" />
     <Midl Include="SettingsPage.idl">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>

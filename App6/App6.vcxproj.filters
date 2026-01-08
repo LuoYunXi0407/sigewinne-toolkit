@@ -29,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
+    <Midl Include="SettingsViewModel.idl">
+      <Filter>ViewModel</Filter>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="Security.cpp">
       <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsViewModel.cpp">
+      <Filter>ViewModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,9 @@
       <Filter>Service\Account</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SettingsViewModel.h">
+      <Filter>ViewModel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -247,6 +256,9 @@
     </Filter>
     <Filter Include="Controls">
       <UniqueIdentifier>{cf3eecf3-5d69-43ac-a170-7ac98bbe943e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewModel">
+      <UniqueIdentifier>{139ef8be-f805-44bd-bfb6-82c8ffdcc3b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
