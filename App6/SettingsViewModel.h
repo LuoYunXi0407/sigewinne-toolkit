@@ -1,6 +1,9 @@
 #pragma once
 #include "Settings.h"
 #include "SettingsViewModel.g.h"
+#include <winrt/Microsoft.UI.Xaml.Data.h>
+#include <wil/cppwinrt_authoring.h>
+
 using namespace Service::Settings;
 namespace winrt::App6::implementation
 {
@@ -19,15 +22,22 @@ namespace winrt::App6::implementation
 
         void LangCombo_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e);
 
-        void GamePath(hstring value);
-        hstring GamePath();
 
-        winrt::event_token PropertyChanged(winrt::Microsoft::UI::Xaml::Data::PropertyChangedEventHandler const& handler);
-        void PropertyChanged(winrt::event_token const& token) noexcept;
+        auto GamePath() const noexcept {
+            return m_GamePath;
+        }
+        auto& GamePath(hstring value) {
+            if (m_GamePath != value) {
+                pappsettings->set_gamepath(to_string(value));
+                m_GamePath = std::move(value);
+                RaisePropertyChanged(L"GamePath");
+            }
+            return *this;
+        };
+        hstring m_GamePath{ to_hstring(pappsettings->gamepath()) };
 
-    private:
-        hstring m_gamePath{};
-        winrt::event<winrt::Microsoft::UI::Xaml::Data::PropertyChangedEventHandler> m_propertyChanged;
+
+
 
     };
 }
