@@ -252,4 +252,22 @@
   <data name="ViewPageSettingsGamePathAutoDetect.Content" xml:space="preserve">
     <value>Auto Detect</value>
   </data>
+  <data name="MBLoadSettingsFromFileWarn" xml:space="preserve">
+    <value>LoadSettingsFromFile Failed, ignore if FIRSTRUN</value>
+  </data>
+  <data name="MBGamePathDetectError" xml:space="preserve">
+    <value>GamePath Detect Error</value>
+  </data>
+  <data name="MBLaunchGameError" xml:space="preserve">
+    <value>Launch GAME ERROR</value>
+  </data>
+  <data name="MBWarn" xml:space="preserve">
+    <value>Warn</value>
+  </data>
+  <data name="MBError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MBInfo" xml:space="preserve">
+    <value>Info</value>
+  </data>
 </root>

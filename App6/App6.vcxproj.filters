@@ -54,6 +54,9 @@
     <ClCompile Include="GamePathDetect.cpp">
       <Filter>Service\Game\FileSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Service\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -78,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="GamePathDetect.h">
       <Filter>Service\Game\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Service\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +286,9 @@
     </Filter>
     <Filter Include="Resource\zh-cn">
       <UniqueIdentifier>{9434da13-63a4-469f-bf38-1607ece0f497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Utils">
+      <UniqueIdentifier>{1db2d635-1278-49ae-b029-cace694c6725}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

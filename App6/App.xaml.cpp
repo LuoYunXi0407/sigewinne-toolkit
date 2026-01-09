@@ -5,7 +5,8 @@
 #include <LaunchGame.h>
 #include "MainWindow.xaml.h"
 #include <winrt/Microsoft.Windows.Globalization.h>
-
+#include "Utils.h"
+using namespace Service::Utils::Message;
 using namespace Service::Game::Launching;
 
 // TLS Callback to ensure single instance
@@ -88,7 +89,7 @@ namespace winrt::App6::implementation
 	    }
 	    catch (...)
 	    {
-	    	MessageBoxW(0, L"LoadSettingsFromFile Error, ignore if FIRSTRUN", L"Warn", MB_OK | MB_ICONWARNING);
+            ShowMessageBox(L"MBLoadSettingsFromFileWarn", Warn);
 	    }
         init_environment();
 	    if (pappsettings->stealthmode())

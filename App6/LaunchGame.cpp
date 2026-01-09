@@ -6,7 +6,8 @@
 #include <wil/resource.h>
 #include "wil/result.h"
 #include "Settings.h"
-
+#include "Utils.h"
+using namespace Service::Utils::Message;
 using namespace Service::Settings;
 
 namespace Service::Game::Launching
@@ -158,7 +159,7 @@ namespace Service::Game::Launching
 			}
 			catch (...)
 			{
-				MessageBoxW(0, L"Launch GAME ERROR", L"Error", MB_OK | MB_ICONERROR);
+				ShowMessageBox(L"MBLaunchGameError", Error);
 			}
 			return 0;
 		}, NULL, 0, NULL));

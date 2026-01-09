@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <wil/resource.h>
 #include "wil/result.h"
+#include "GamePathDetect.h"
 
 namespace Service::Game::FileSystem
 {

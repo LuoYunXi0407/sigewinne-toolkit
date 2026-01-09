@@ -8,13 +8,14 @@
 #include <winrt/Microsoft.UI.Interop.h>
 #include "MainWindow.xaml.h"
 #include "GamePathDetect.h"
+#include "Utils.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::Windows::Storage::Pickers;
 using namespace Service::Settings;
 using namespace Service::Game::FileSystem;
-
+using namespace Service::Utils::Message;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -74,7 +75,7 @@ namespace winrt::App6::implementation
         }
         catch (...)
         {
-            MessageBoxW(0, L"GamePath Detect Error", L"Error", MB_OK | MB_ICONERROR);
+            ShowMessageBox(L"MBGamePathDetectError",Error);
             return;
         }
 

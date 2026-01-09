@@ -5,13 +5,14 @@
 #endif
 #include <winrt/Microsoft.UI.Interop.h>
 #include <winrt/Windows.UI.Xaml.Interop.h>
-#include <winrt/Microsoft.Windows.ApplicationModel.Resources.h>
 #include "resource.h"
 #include <commctrl.h>
 #include <Settings.h>
+#include "Utils.h"
 
 using namespace Service::Settings;
-using namespace Microsoft::Windows::ApplicationModel::Resources;
+using namespace Service::Utils;
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -38,13 +39,7 @@ namespace winrt::App6::implementation
     void MainWindow::AddNotifyIcon()
     {
 
-		//https://stackoverflow.com/questions/73628384/winui-3-c-winrt-loading-string-resources
-		//ResourceManager rm{};
-		//auto str = rm.MainResourceMap().GetValue(L"Resources/String1").ValueAsString();
-		
-		ResourceLoader loader;
-		hstring appname = loader.GetString(L"NotifyIconName");
-
+		hstring appname = ResourceGetString(const_cast<wchar_t*>(L"NotifyIconName"));
 		guid gNotifyIcon("21a2acbc-3a44-43c8-860a-f8e7151b2623");
 		NOTIFYICONDATAW nid = {};
 		nid.cbSize = sizeof(NOTIFYICONDATAW);
