@@ -30,8 +30,7 @@ namespace Service::Utils
 			default:
 				break;
 			}
-			
-			MessageBoxW(0, text.c_str(), caption.c_str(), MB_OK | MB_ICONERROR);
+
 		}
     }
 
