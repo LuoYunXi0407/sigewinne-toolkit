@@ -9,7 +9,7 @@
 
 using namespace Service::Settings;
 
-namespace Service::LaunchGame
+namespace Service::Game::Launching
 {
 	
 	static void LaunchGameImpl()

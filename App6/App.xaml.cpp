@@ -6,6 +6,8 @@
 #include "MainWindow.xaml.h"
 #include <winrt/Microsoft.Windows.Globalization.h>
 
+using namespace Service::Game::Launching;
+
 // TLS Callback to ensure single instance
 VOID WINAPI tls_callback1(
     PVOID DllHandle,
@@ -92,8 +94,8 @@ namespace winrt::App6::implementation
 	    if (pappsettings->stealthmode())
 	    {
             std::string_view tmp = pappsettings->gamepath();
-            Service::LaunchGame::g_path = std::wstring(tmp.begin(),tmp.end());
-			Service::LaunchGame::Launch();
+            g_path = std::wstring(tmp.begin(),tmp.end());
+			Launch();
 
 	    }
 

@@ -3,7 +3,7 @@
 #include <filesystem>
 
 
-namespace Service::LaunchGame
+namespace Service::Game::Launching
 {
 
 	inline std::wstring g_path;
