@@ -40,6 +40,7 @@
                         <ComboBox
                             x:Name="LangCombo"
                             Width="200"
+                            essential:ComboBoxHelper.AcrylicWorkaround="True"
                             IsEnabled="{x:Bind LangOverrideToggle.IsOn, Mode=OneWay}"
                             SelectionChanged="LangCombo_SelectionChanged">
                             <x:String>Default</x:String>
@@ -70,7 +71,10 @@
                             Click="SelectGamePath_Click"
                             Header="Select Game Path"
                             IsClickEnabled="True">
-                            <Button x:Uid="ViewPageSettingsGamePathAutoDetect" Style="{StaticResource AccentButtonStyle}" Click="GamePathAutoDetect_Click"/>
+                            <Button
+                                x:Uid="ViewPageSettingsGamePathAutoDetect"
+                                Click="GamePathAutoDetect_Click"
+                                Style="{StaticResource AccentButtonStyle}" />
                         </essential:SettingsCard>
 
                         <essential:SettingsCard ContentAlignment="Left">
