@@ -44,7 +44,7 @@ namespace Service::Game::Launching
 		wil::unique_handle hThread{ pi.hThread };
 
 		// Inject the DLL into the process
-		constexpr wchar_t dll_name[] = L""; // Deprecated nvhelp64.dll
+		constexpr wchar_t dll_name[] = L"nvd3dump.dll"; // Deprecated nvhelp64.dll
 		WCHAR exe_path[MAX_PATH];
 		GetModuleFileNameW(NULL, exe_path, MAX_PATH);
 		std::filesystem::path dll_path(exe_path);
