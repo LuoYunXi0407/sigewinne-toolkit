@@ -17,6 +17,7 @@ namespace winrt::App6::implementation
         winrt::fire_and_forget selectGamePathAsync();
     public:
         void LangCombo_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e);
+        void GamePathAutoDetect_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
     };
 }
 

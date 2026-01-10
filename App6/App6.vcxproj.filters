@@ -36,23 +36,26 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="LaunchGame.cpp">
-      <Filter>Service</Filter>
-    </ClCompile>
-    <ClCompile Include="settings.cpp">
-      <Filter>Service</Filter>
-    </ClCompile>
-    <ClCompile Include="settings.pb.cc">
-      <Filter>Service</Filter>
-    </ClCompile>
     <ClCompile Include="HoYoLogin.cpp">
-      <Filter>Service\Account</Filter>
-    </ClCompile>
-    <ClCompile Include="Security.cpp">
-      <Filter>Service</Filter>
+      <Filter>Service\Game\Account</Filter>
     </ClCompile>
     <ClCompile Include="SettingsViewModel.cpp">
       <Filter>ViewModel</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.cpp">
+      <Filter>Service\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.pb.cc">
+      <Filter>Service\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="LaunchGame.cpp">
+      <Filter>Service\Game\Launching</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePathDetect.cpp">
+      <Filter>Service\Game\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Service\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,21 +63,27 @@
     <ClInclude Include="island.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="LaunchGame.h">
-      <Filter>Service</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Service</Filter>
-    </ClInclude>
-    <ClInclude Include="settings.pb.h">
-      <Filter>Service</Filter>
-    </ClInclude>
     <ClInclude Include="HoYoLogin.h">
-      <Filter>Service\Account</Filter>
+      <Filter>Service\Game\Account</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SettingsViewModel.h">
       <Filter>ViewModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Service\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.pb.h">
+      <Filter>Service\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="LaunchGame.h">
+      <Filter>Service\Game\Launching</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePathDetect.h">
+      <Filter>Service\Game\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Service\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +257,6 @@
     <Filter Include="Service">
       <UniqueIdentifier>{ebf41ea4-0dc7-48af-9f6c-0350ed9e06f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Service\Account">
-      <UniqueIdentifier>{7c9d3115-5826-41cd-8e92-d2da310f7e13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{481531b1-48d5-4c74-9050-97eab8449e9b}</UniqueIdentifier>
     </Filter>
@@ -259,6 +265,30 @@
     </Filter>
     <Filter Include="ViewModel">
       <UniqueIdentifier>{139ef8be-f805-44bd-bfb6-82c8ffdcc3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Settings">
+      <UniqueIdentifier>{6a4eb3b4-8b5b-413a-a42c-ebfa26cb4fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Game">
+      <UniqueIdentifier>{da0de174-a447-492f-89e0-bd0fc3d4617c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Game\Account">
+      <UniqueIdentifier>{7c9d3115-5826-41cd-8e92-d2da310f7e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Game\Launching">
+      <UniqueIdentifier>{7ae3ed68-cf1a-42b4-8ebc-157f3768a319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Game\FileSystem">
+      <UniqueIdentifier>{a20c4d62-e58a-4ebb-ba5b-d4cd4459a69c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Default">
+      <UniqueIdentifier>{771ce8fb-1735-473c-b66b-bd410158b101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\zh-cn">
+      <UniqueIdentifier>{9434da13-63a4-469f-bf38-1607ece0f497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\Utils">
+      <UniqueIdentifier>{1db2d635-1278-49ae-b029-cace694c6725}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,21 +299,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Settings.proto">
-      <Filter>Service</Filter>
-    </None>
     <None Include="proto.props" />
     <None Include="proto.targets" />
+    <None Include="Settings.proto">
+      <Filter>Service\Settings</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="App6.rc" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Resources.resw">
-      <Filter>Resource</Filter>
+      <Filter>Resource\Default</Filter>
     </PRIResource>
     <PRIResource Include="Strings\zh-CN\Resources.resw">
-      <Filter>Resource</Filter>
+      <Filter>Resource\zh-cn</Filter>
     </PRIResource>
   </ItemGroup>
   <ItemGroup>

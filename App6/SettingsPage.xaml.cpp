@@ -7,12 +7,15 @@
 #endif
 #include <winrt/Microsoft.UI.Interop.h>
 #include "MainWindow.xaml.h"
+#include "GamePathDetect.h"
+#include "Utils.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::Windows::Storage::Pickers;
 using namespace Service::Settings;
-
+using namespace Service::Game::FileSystem;
+using namespace Service::Utils::Message;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -61,6 +64,25 @@ namespace winrt::App6::implementation
         }
     }
 
+    void SettingsPage::GamePathAutoDetect_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+
+        wchar_t path[MAX_PATH];
+
+        try
+        {
+            GamePathDetect(path);
+        }
+        catch (...)
+        {
+            ShowMessageBox(L"MBGamePathDetectError",Error);
+            return;
+        }
+
+        m_viewModel.GamePath(to_hstring(path) + L"\\YuanShen.exe");
+        
+    }
 
 }
+
 

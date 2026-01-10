@@ -6,10 +6,11 @@
 #include <wil/resource.h>
 #include "wil/result.h"
 #include "Settings.h"
-
+#include "Utils.h"
+using namespace Service::Utils::Message;
 using namespace Service::Settings;
 
-namespace Service::LaunchGame
+namespace Service::Game::Launching
 {
 	
 	static void LaunchGameImpl()
@@ -43,7 +44,7 @@ namespace Service::LaunchGame
 		wil::unique_handle hThread{ pi.hThread };
 
 		// Inject the DLL into the process
-		constexpr wchar_t dll_name[] = L""; // Deprecated nvhelp64.dll
+		constexpr wchar_t dll_name[] = L"nvd3dump.dll"; // Deprecated nvhelp64.dll
 		WCHAR exe_path[MAX_PATH];
 		GetModuleFileNameW(NULL, exe_path, MAX_PATH);
 		std::filesystem::path dll_path(exe_path);
@@ -158,7 +159,7 @@ namespace Service::LaunchGame
 			}
 			catch (...)
 			{
-				MessageBoxW(0, L"Launch GAME ERROR", L"Error", MB_OK | MB_ICONERROR);
+				ShowMessageBox(L"MBLaunchGameError", Error);
 			}
 			return 0;
 		}, NULL, 0, NULL));

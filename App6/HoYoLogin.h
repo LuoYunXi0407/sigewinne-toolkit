@@ -8,7 +8,7 @@
 using namespace winrt;
 using namespace Windows::Foundation;
 
-namespace Service::Account
+namespace Service::Game::Account
 {
 	class HoYoLogin
 	{

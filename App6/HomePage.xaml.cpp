@@ -13,7 +13,7 @@ using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Windows::UI::Xaml::Interop;
 using namespace winrt::Microsoft::UI::Xaml::Media::Animation;
-using namespace Service::LaunchGame;
+using namespace Service::Game::Launching;
 using namespace Service::Settings;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

@@ -13,7 +13,7 @@ using namespace Windows::Web::Http::Headers;
 using namespace Windows::Foundation;
 using namespace winrt::Windows::Data::Json;
 
-namespace Service::Account
+namespace Service::Game::Account
 {
 	HoYoLogin::HoYoLogin(std::string& cookies) :
 		m_cookies(cookies)
